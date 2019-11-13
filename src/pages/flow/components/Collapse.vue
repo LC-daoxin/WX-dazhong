@@ -1,13 +1,17 @@
 <template>
   <div class="collapse">
-    <div class="collapse-item open">
-      <a href="#" class="collapse-header">
-        <span><i class="iconfont">&#xe635;</i></span><strong>{{ collapseName }}</strong>
+    <div :class="['collapse-item', itemShowType ? 'open' : 'closed']">
+      <a href="#" class="collapse-header" @click="handleOpenClick">
+        <span>
+          <i class="iconfont" v-if="itemShowType">&#xe634;</i>
+          <i class="iconfont" v-else>&#xe635;</i>
+        </span><strong>{{ collapseName }}</strong>
       </a>
-      <div class="collapse-body">
-        <div>123</div>
+      <div class="collapse-body" ref="collapsebody">
+        <slot name="content"></slot>
+        <slot name="noInfo"></slot>
       </div>
-      <a href="#" class="collapse-footer"><i class="iconfont">&#xe6e1;</i></a>
+      <a href="#" class="collapse-footer"  @click="handleOpenClick"><i class="iconfont">&#xe6e1;</i></a>
     </div>
   </div>
 </template>
@@ -15,13 +19,38 @@
 <script>
 export default {
   name: 'Collapse',
+  props: {
+    collapseName: String,
+    show: Boolean
+  },
   data () {
     return {
-      collapseName: '正文',
-      collapseType: 'abc'
+      itemShowType: this.show
     }
   },
-  methods: {}
+  mounted () {
+    if (!this.show) {
+      this.$refs.collapsebody.style.height = '0px'
+    }
+  },
+  methods: {
+    handleOpenClick () {
+      let body = this.$refs.collapsebody
+      let height = body.childNodes[0].offsetHeight || body.childNodes[1].offsetHeight
+      if (this.itemShowType) {
+        body.style.height = height + 'px'
+        setTimeout(() => {
+          body.style.height = '0px'
+        }, 1)
+      } else {
+        body.style.height = height + 'px'
+        setTimeout(() => {
+          body.style.height = 'auto'
+        }, 300)
+      }
+      this.itemShowType = !this.itemShowType
+    }
+  }
 }
 </script>
 
@@ -30,17 +59,11 @@ export default {
   .collapse{
     .collapse-item{
       &.open{
-        .collapse-body{
-          height: auto;
-        }
         .collapse-footer{
-          height: auto;
+          display: block;
         }
       }
       &.closed{
-        .collapse-body{
-          display: none;
-        }
         .collapse-footer{
           display: none;
         }
@@ -75,7 +98,10 @@ export default {
         }
       }
       .collapse-body{
-        padding: .3rem .3rem 0;
+        height: auto;
+        overflow: hidden;
+        transition: height .3s;
+        box-sizing: border-box;
       }
       .collapse-footer{
         display: block;
