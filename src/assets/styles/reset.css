@@ -22,4 +22,25 @@ sup,sub{vertical-align:baseline}
 html {overflow-x: hidden;height: 100%;font-size: 50px;-webkit-tap-highlight-color: transparent;}
 body {font-family: Arial, "Microsoft Yahei", "Helvetica Neue", Helvetica, sans-serif;color: #333;font-size: .24rem;line-height: 1;-webkit-text-size-adjust: none;}
 hr {height: .02rem;margin: .1rem 0;border: medium none;border-top: .02rem solid #cacaca;}
-a {color: #25a4bb;text-decoration: none;}
+a {text-decoration: none;}
+
+@font-face {
+  font-family: 'DoHyeon-Regular';
+  src: url(./font/DoHyeon-Regular.ttf);
+}
+@font-face {
+  font-family: 'Monoton-Regular';
+  src: url(./font/Monoton-Regular.ttf);
+}
+.DoHyeonfont {
+  font-family: "DoHyeon-Regular" !important;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.Monotonfont {
+  font-family: "Monoton-Regular" !important;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

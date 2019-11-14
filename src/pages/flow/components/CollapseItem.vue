@@ -1,6 +1,6 @@
 <template>
   <div class="CollapseRow">
-    <a href="#" class="CollapseRow-header" @click="handleOpenClick">
+    <a href="javascript:void(0);" class="CollapseRow-header" @click="handleOpenClick">
       <strong>{{CollapseItemName}}</strong><i class="iconfont" v-if="itemShowType">&#xe610;</i><i class="iconfont" v-else>&#xe611;</i>
     </a>
     <div class="CollapseRow-body" ref="CollapseRowbody">
@@ -44,8 +44,8 @@ export default {
     padding: .3rem .1rem 0;
     .CollapseRow-header{
       display: block;
-      border-top: solid 1px $bgColor;
-      padding: 10px 2px;
+      border-top: solid .02rem $bgColor;
+      padding: .2rem .04rem;
       color: $CollapseRow;
       font-size: .28rem;
       i{

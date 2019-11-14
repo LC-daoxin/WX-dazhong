@@ -54,12 +54,12 @@ export default {
       .basic-col-left{
         font-family: "KohinoorBangla Light";
         color: #9c9990;
-        padding: 8px 0;
+        padding: .16rem 0;
       }
       .basic-col-right{
         font-weight: normal;
         text-align: right;
-        padding: 8px 4px;
+        padding: .16rem .08rem;
       }
     }
   }

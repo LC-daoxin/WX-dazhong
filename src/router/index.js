@@ -9,6 +9,14 @@ export default new Router({
       path: '/',
       name: 'Flow-demo',
       component: () => import('@/pages/flow/Flow-demo')
+    }, {
+      path: '/Home',
+      name: 'Home',
+      component: () => import('@/pages/home/Home')
+    }, {
+      path: '/Login',
+      name: 'Login',
+      component: () => import('@/pages/login/Login')
     }
   ],
   scrollBehavior (to, from, savedPosition) {

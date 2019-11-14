@@ -41,6 +41,13 @@
       "unicode_decimal": 58933
     },
     {
+      "icon_id": "1346680",
+      "name": "下载 (1)",
+      "font_class": "xiazai1",
+      "unicode": "e639",
+      "unicode_decimal": 58937
+    },
+    {
       "icon_id": "2742625",
       "name": "返回",
       "font_class": "fanhui",
@@ -60,6 +67,55 @@
       "font_class": "duigou_kuai",
       "unicode": "ed1d",
       "unicode_decimal": 60701
+    },
+    {
+      "icon_id": "8776631",
+      "name": "view",
+      "font_class": "icon-test",
+      "unicode": "e633",
+      "unicode_decimal": 58931
+    },
+    {
+      "icon_id": "8776676",
+      "name": "view_off",
+      "font_class": "icon-test1",
+      "unicode": "e636",
+      "unicode_decimal": 58934
+    },
+    {
+      "icon_id": "8776785",
+      "name": "order_unread",
+      "font_class": "icon-test2",
+      "unicode": "e63a",
+      "unicode_decimal": 58938
+    },
+    {
+      "icon_id": "8777038",
+      "name": "lock",
+      "font_class": "icon-test3",
+      "unicode": "e644",
+      "unicode_decimal": 58948
+    },
+    {
+      "icon_id": "8777250",
+      "name": "user",
+      "font_class": "icon-test4",
+      "unicode": "e64d",
+      "unicode_decimal": 58957
+    },
+    {
+      "icon_id": "8777388",
+      "name": "check",
+      "font_class": "icon-test5",
+      "unicode": "e651",
+      "unicode_decimal": 58961
+    },
+    {
+      "icon_id": "8777389",
+      "name": "close",
+      "font_class": "icon-test6",
+      "unicode": "e652",
+      "unicode_decimal": 58962
     }
   ]
 }

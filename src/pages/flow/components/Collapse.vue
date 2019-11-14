@@ -1,17 +1,19 @@
 <template>
   <div class="collapse">
     <div :class="['collapse-item', itemShowType ? 'open' : 'closed']">
-      <a href="#" class="collapse-header" @click="handleOpenClick">
+      <a href="javascript:void(0);" class="collapse-header" @click="handleOpenClick">
         <span>
           <i class="iconfont" v-if="itemShowType">&#xe634;</i>
           <i class="iconfont" v-else>&#xe635;</i>
         </span><strong>{{ collapseName }}</strong>
       </a>
       <div class="collapse-body" ref="collapsebody">
-        <slot name="content"></slot>
-        <slot name="noInfo"></slot>
+        <div>
+          <slot name="content"></slot>
+          <slot name="noInfo"></slot>
+        </div>
       </div>
-      <a href="#" class="collapse-footer"  @click="handleOpenClick"><i class="iconfont">&#xe6e1;</i></a>
+      <a href="javascript:void(0);" class="collapse-footer"  @click="handleOpenClick"><i class="iconfont">&#xe6e1;</i></a>
     </div>
   </div>
 </template>
@@ -36,7 +38,7 @@ export default {
   methods: {
     handleOpenClick () {
       let body = this.$refs.collapsebody
-      let height = body.childNodes[0].offsetHeight || body.childNodes[1].offsetHeight
+      let height = body.childNodes[0].offsetHeight
       if (this.itemShowType) {
         body.style.height = height + 'px'
         setTimeout(() => {

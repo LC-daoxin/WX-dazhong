@@ -6,7 +6,7 @@
     >
       <template #content v-if="NoData">
         <div v-for="child of InfoChildData" :key="child.name">
-          <collapse-item :CollapseItemName="child.name">
+          <collapse-item :CollapseItemName="child.name" v-if="child.type === 'list'">
             <template #collapseItem>
               <div class="basic-body">
                 <van-row  class="basic-row" v-for="item of child.data" :key="item.ID">
@@ -79,7 +79,7 @@ export default {
       .basic-col-left{
         font-family: "KohinoorBangla Light";
         color: #9c9990;
-        padding: 8px 0;
+        padding: .16rem 0;
       }
       .basic-col-right{
         font-weight: normal;
@@ -92,7 +92,7 @@ export default {
     padding: .2rem .1rem .1rem;
     .NoContent{
       padding: .2rem;
-      background: #eae3df;
+      background: #f3efed;
       text-align: center;
     }
   }
