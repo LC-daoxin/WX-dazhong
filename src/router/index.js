@@ -6,17 +6,33 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/',
+      path: '/Flow-demo',
       name: 'Flow-demo',
+      meta: {
+        title: 'Process'
+      },
       component: () => import('@/pages/flow/Flow-demo')
     }, {
       path: '/Home',
       name: 'Home',
+      meta: {
+        title: 'Home'
+      },
       component: () => import('@/pages/home/Home')
     }, {
-      path: '/Login',
+      path: '/',
       name: 'Login',
+      meta: {
+        title: 'Login'
+      },
       component: () => import('@/pages/login/Login')
+    }, {
+      path: '/List',
+      name: 'List',
+      meta: {
+        title: 'My Pending'
+      },
+      component: () => import('@/pages/list/List')
     }
   ],
   scrollBehavior (to, from, savedPosition) {

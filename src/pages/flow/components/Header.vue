@@ -47,8 +47,8 @@ export default {
       top: .08rem;
       width: 100%;
       text-align: center;
-      font-size: .1rem;
-      transform:scale(0.85);
+      font-size: .24rem;
+      transform:scale(1);
     }
     .header-oddnumbers{
       position: absolute;

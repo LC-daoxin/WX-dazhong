@@ -32,14 +32,24 @@ a {text-decoration: none;}
   font-family: 'Monoton-Regular';
   src: url(./font/Monoton-Regular.ttf);
 }
-.DoHyeonfont {
+@font-face {
+  font-family: 'Cabin-Regular';
+  src: url(./font/Cabin-Regular.ttf);
+}
+.DoHyeonfont {  /*登录页面*/
   font-family: "DoHyeon-Regular" !important;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.Monotonfont {
+.Monotonfont {  /*登录页面*/
   font-family: "Monoton-Regular" !important;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.Cabinfont { /*首页*/
+  font-family: "Cabin-Regular" !important;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

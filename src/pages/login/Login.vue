@@ -18,7 +18,7 @@
           <input id="login-password" type="password" class="input-box" placeholder="Password"/>
         </div>
         <div class="login-forget">Forget Password.?</div>
-        <router-link to="/Home">
+        <router-link to="/Home" replace>
           <button class="login-row login-button">登录</button>
         </router-link>
       </div>
@@ -132,6 +132,7 @@ export default {
             flex: 1;
             font-size: .3rem;
             padding: .12rem;
+            line-height: normal;
           }
         }
         .login-forget{

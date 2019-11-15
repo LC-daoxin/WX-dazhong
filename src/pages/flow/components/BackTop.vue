@@ -1,6 +1,8 @@
 <template>
   <div class="backTop">
-    <img class="backTop-img imgback" src="@styles/img/back.png">
+    <router-link to="/List" replace>
+      <img class="backTop-img imgback" src="@styles/img/back.png">
+    </router-link>
     <img class="backTop-img imgtop" src="@styles/img/top.png">
   </div>
 </template>
