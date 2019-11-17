@@ -27,7 +27,7 @@ export default new Router({
       },
       component: () => import('@/pages/login/Login')
     }, {
-      path: '/List',
+      path: '/List/:tabactive',
       name: 'List',
       meta: {
         title: 'My Pending'

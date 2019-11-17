@@ -3,20 +3,24 @@
     <van-nav-bar
       class="home-nav"
       title="VWED APON"
-    />
+    >
+      <div class="logo" slot="left">
+        <img src="@/assets/styles/img/bglog.png" height="53" width="104"/>
+      </div>
+    </van-nav-bar>
     <van-row class="home-box">
       <van-col span="24">
         <div class="home-box-title"><i class="iconfont"></i>Pending/待办</div>
       </van-col>
       <van-col span="24">
         <van-grid :column-num="4" :border="false">
-          <van-grid-item to="/List" replace>
+          <van-grid-item to="/List/0" replace>
             <div class="iconbox">
               <i class="iconfont icon-img color1">&#xeb93;</i>
               <span>My Pending</span>
             </div>
           </van-grid-item>
-          <van-grid-item>
+          <van-grid-item to="/List/1" replace>
             <div class="iconbox">
               <i class="iconfont icon-img color2">&#xeb9a;</i>
               <span>BM Pending</span>
@@ -36,19 +40,19 @@
       </van-col>
       <van-col span="24">
         <van-grid :column-num="4" :border="false">
-          <van-grid-item>
+          <van-grid-item @click="handleClick">
             <div class="iconbox">
               <i class="iconfont icon-img color4">&#xeb95;</i>
               <span>My Created</span>
             </div>
           </van-grid-item>
-          <van-grid-item>
+          <van-grid-item @click="handleClick">
             <div class="iconbox">
               <i class="iconfont icon-img color5">&#xeb97;</i>
               <span>My Request</span>
             </div>
           </van-grid-item>
-          <van-grid-item>
+          <van-grid-item @click="handleClick">
             <div class="iconbox">
               <i class="iconfont icon-img color3">&#xeb99;</i>
               <span>My Approve</span>
@@ -67,18 +71,7 @@
       </van-col>
       <van-row>
         <van-col span="24" v-for="item of listdata" :key="item.id">
-          <router-link to="/Flow-demo" replace>
-            <div class="home-box-pending van-hairline--top">
-              <div class="home-box-pending-icon"><i class="iconfont">&#xeb91;</i></div>
-              <div class="home-box-pending-content">
-                <div class="name col"><span class="title">流程名称：</span><span class="content">{{item.name}}</span></div>
-                <div class="name col"><span class="title">单据号：</span><span class="content">{{item.no}}</span></div>
-                <div class="text col"><i class="iconfont">&#xe790;</i>{{item.time}}</div>
-                <div class="text col"><i class="iconfont">&#xe60c;</i>{{item.user}}</div>
-              </div>
-              <div :class="['status', item.status]">{{item.status| status}}</div>
-            </div>
-          </router-link>
+          <list-item :item="item"></list-item>
         </van-col>
       </van-row>
       <van-col span="24">
@@ -93,6 +86,7 @@
 <script>
 import { Row, Col, NavBar, Toast, Grid, GridItem } from 'vant'
 import TabBottom from '@/components/Tabbar/Tabbottom'
+import ListItem from '@/components/list/ListItem'
 export default {
   components: {
     [NavBar.name]: NavBar,
@@ -101,7 +95,8 @@ export default {
     [Col.name]: Col,
     [Grid.name]: Grid,
     [GridItem.name]: GridItem,
-    TabBottom
+    TabBottom,
+    ListItem
   },
   name: 'Home',
   data () {
@@ -145,18 +140,10 @@ export default {
       }]
     }
   },
-  filters: {
-    status: function (value) {
-      let Text
-      switch (value) {
-        case 'Active': Text = '进行中'; break
-        case 'Completed': Text = '已完成'; break
-        case 'Error': Text = '错误'; break
-      }
-      return Text
-    }
-  },
   methods: {
+    handleClick () {
+      Toast('暂未开发')
+    }
   }
 }
 </script>
@@ -168,9 +155,6 @@ export default {
   $Color3: #d08df6;
   $Color4: #e3776b;
   $Color5: #fcce44;
-  $Active: #3bcb23;
-  $Completed: #969696;
-  $Error: #ff6162;
   .home {
     width: 100%;
     height: 100vh;
@@ -185,6 +169,17 @@ export default {
         font-size: .36rem;
         font-weight: 900;
         // font-family: 'Cabin-Regular';
+      }
+      .logo{
+        width: 1.2rem;
+        opacity: .9;
+        img{
+          margin-top: -.14rem;
+          width: auto;
+          height: auto;
+          max-width: 100%;
+          max-height: 100%;
+        }
       }
     }
     &-box {
@@ -232,83 +227,11 @@ export default {
             font-size: 13px;
           }
         }
-          .color1{background: $Color1}
+        .color1{background: $Color1}
         .color2{background: $Color2}
         .color3{background: $Color3}
         .color4{background: $Color4}
         .color5{background: $Color5}
-      }
-      &-pending{
-        display: flex;
-        position: relative;
-        background: #fff;
-        &-icon{
-          width: 1rem;
-          text-align: center;
-          padding-top: .3rem;
-          color: $bgColor;
-          font-weight: 600;
-          i{
-            font-size: .42rem;
-          }
-        }
-        &-content{
-          flex: 1;
-          padding: .3rem 0 .1rem;
-          font-size: .28rem;
-          .col{
-            padding-bottom: .2rem;
-          }
-          .name{
-            display: flex;
-            font-weight: 500;
-            line-height: .34rem;
-            margin-right: 1.26rem;
-            color: #333;
-            .title{
-              font-weight: 700;
-              display: inline-block;
-              width: 1.4rem;
-              text-align: right;
-            }
-            .content{
-              flex: 1;
-              display: -webkit-box;
-              flex-direction: column;
-              -webkit-line-clamp:1;
-              overflow: hidden;
-              text-overflow: ellipsis;
-            }
-          }
-          > .text{
-            font-size: .26rem;
-            color: #9a9a9a;
-            display: flex;
-            align-items: center;
-            i{
-              padding-right: .1rem;
-            }
-          }
-        }
-        .status{
-          &.Active{
-            color: $Active;
-            border: 2px solid $Active;
-          }
-          &.Completed{
-            color: $Completed;
-            border: 2px solid $Completed;
-          }
-          &.Error{
-            color: $Error;
-            border: 2px solid $Error;
-          }
-          position: absolute;
-          right: .24rem;
-          padding: .06rem;
-          top: .3rem;
-          font-size: .24rem;
-        }
       }
     }
     &-box-last {

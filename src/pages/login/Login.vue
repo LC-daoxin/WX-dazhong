@@ -2,6 +2,7 @@
   <div class="login">
     <div class="login-form">
       <div class="login-title DoHyeonfont">
+        <img class="login-bglogo" src="@/assets/styles/img/bglog.png" height="53" width="104"/>
         <h1 class="login-title-h1">Welcome</h1>
         <h2 class="login-title-h2">to VWED !</h2>
       </div>
@@ -23,6 +24,7 @@
         </router-link>
       </div>
     </div>
+    <div class="bg2"></div>
   </div>
 </template>
 
@@ -68,8 +70,12 @@ export default {
       .login-title{
         font-weight: 900;
         position: absolute;
-        top: -2.2rem;
+        top: -3.8rem;
         left: .1rem;
+        .login-bglogo{
+          opacity: 1;
+          margin-bottom: .8rem;
+        }
         .login-title-h1{
           font-size: 1rem;
           font-weight: 900;
@@ -141,6 +147,17 @@ export default {
           color: #9c9c9c;
         }
       }
+    }
+    .bg2{
+      width: 100%;
+      height: 6rem;
+      position: absolute;
+      bottom: 0;
+      background: url('~@styles/img/Banner.jpg') no-repeat;
+      background-size: auto 100%;
+      background-position: 45%;
+      z-index: -1;
+      opacity: .07;
     }
   }
 </style>

@@ -11,7 +11,7 @@
     </form>
     <van-tabs
       v-model="tabactive"
-      :ellipsis="ellipsis"
+      :ellipsis="false"
       color="#2196F3"
       title-active-color="#2196F3"
       swipeable
@@ -20,7 +20,7 @@
         <div slot="title" class="tab">
           <i class="iconfont">&#xeb93;</i> My Pending
         </div>
-        <div></div>
+        <list-content></list-content>
       </van-tab>
       <van-tab>
         <div slot="title" class="tab">
@@ -35,6 +35,7 @@
 
 <script>
 import TabBottom from '@/components/Tabbar/Tabbottom'
+import ListContent from './components/ListContent'
 import { Search, Tab, Tabs } from 'vant'
 export default {
   name: 'list',
@@ -42,14 +43,14 @@ export default {
     [Search.name]: Search,
     [Tab.name]: Tab,
     [Tabs.name]: Tabs,
-    TabBottom
+    TabBottom,
+    ListContent
   },
   data () {
     return {
       value: '',
       CurrentPage: 1,
-      tabactive: 0,
-      ellipsis: false
+      tabactive: parseInt(this.$route.params.tabactive)
     }
   }
 }
