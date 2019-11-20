@@ -6,6 +6,13 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
+      path: '/Search',
+      name: 'Search',
+      meta: {
+        title: 'Search'
+      },
+      component: () => import('@/pages/search/Search')
+    }, {
       path: '/Flow-demo',
       name: 'Flow-demo',
       meta: {

@@ -1,15 +1,52 @@
 <template>
   <div class="backTop">
-    <router-link to="/List/0" replace>
-      <img class="backTop-img imgback" src="@styles/img/back.png">
-    </router-link>
-    <img class="backTop-img imgtop" src="@styles/img/top.png">
+    <img class="backTop-img imgback" src="@styles/img/back.png" @click="back">
+    <img class="backTop-img imgtop" src="@styles/img/top.png" v-if="btnFlag" @click="backTop">
   </div>
 </template>
 
 <script>
 export default {
-  name: 'FlowButton'
+  name: 'FlowButton',
+  data () {
+    return {
+      btnFlag: false
+    }
+  },
+  methods: {
+    back () {
+      let HistoryPath = this.$route.query.History
+      this.$router.replace({path: HistoryPath})
+      // this.$router.go(-1)
+    },
+    backTop () {
+      const that = this
+      let timer = setInterval(() => {
+        let ispeed = Math.floor(-that.scrollTop / 8)
+        document.documentElement.scrollTop = document.body.scrollTop = that.scrollTop + ispeed
+        if (that.scrollTop === 0) {
+          clearInterval(timer)
+        }
+      }, 24)
+    },
+    // 为了计算距离顶部的高度，当高度大于60显示回顶部图标，小于60则隐藏
+    scrollToTop () {
+      const that = this
+      let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+      that.scrollTop = scrollTop
+      if (that.scrollTop > 60) {
+        that.btnFlag = true
+      } else {
+        that.btnFlag = false
+      }
+    }
+  },
+  mounted () {
+    window.addEventListener('scroll', this.scrollToTop)
+  },
+  destroyed () {
+    window.removeEventListener('scroll', this.scrollToTop)
+  }
 }
 </script>
 

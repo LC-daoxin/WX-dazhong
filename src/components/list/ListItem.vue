@@ -1,16 +1,14 @@
 <template>
-  <router-link to="/Flow-demo" replace>
-    <div class="pending van-hairline--top">
-      <div class="pending-icon"><i class="iconfont">&#xeb91;</i></div>
-      <div class="pending-content">
-        <div class="name col"><span class="title">流程名称：</span><span class="content">{{item.name}}</span></div>
-        <div class="name col"><span class="title">单据号：</span><span class="content">{{item.no}}</span></div>
-        <div class="text col"><i class="iconfont">&#xe790;</i>{{item.time}}</div>
-        <div class="text col"><i class="iconfont">&#xe60c;</i>{{item.user}}</div>
-      </div>
-      <div :class="['status', item.status]">{{item.status| status}}</div>
+  <div class="pending van-hairline--top" @click="go">
+    <div class="pending-icon"><i class="iconfont">&#xeb91;</i></div>
+    <div class="pending-content">
+      <div class="name col"><span class="title">流程名称：</span><span class="content">{{item.name}}</span></div>
+      <div class="name col"><span class="title">单据号：</span><span class="content">{{item.no}}</span></div>
+      <div class="text col"><i class="iconfont">&#xe790;</i>{{item.time}}</div>
+      <div class="text col"><i class="iconfont">&#xe60c;</i>{{item.user}}</div>
     </div>
-  </router-link>
+    <div :class="['status', item.status]">{{item.status| status}}</div>
+  </div>
 </template>
 
 <script>
@@ -28,6 +26,12 @@ export default {
         case 'Error': Text = '错误'; break
       }
       return Text
+    }
+  },
+  methods: {
+    go () {
+      let CurrentPath = this.$route.path
+      this.$router.replace({path: '/Flow-demo', query: { History: CurrentPath }})
     }
   }
 }

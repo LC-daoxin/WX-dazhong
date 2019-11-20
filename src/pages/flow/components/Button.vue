@@ -1,13 +1,74 @@
 <template>
   <div class="K-button">
-    <button type="button" class="btn btn-default"><i class="iconfont">&#xed1d;</i>同意</button>
-    <button type="button" class="btn btn-warning"><i class="iconfont">&#xe669;</i>拒绝</button>
+    <button type="button" class="btn btn-default" @click="affirm"><i class="iconfont">&#xed1d;</i>同意</button>
+    <button type="button" class="btn btn-warning" @click="refuse"><i class="iconfont">&#xe669;</i>拒绝</button>
   </div>
 </template>
 
 <script>
+import { Dialog, Toast } from 'vant'
 export default {
-  name: 'FlowBackTop'
+  name: 'FlowBackTop',
+  components: {
+    [Dialog.name]: Dialog,
+    [Toast.name]: Toast
+  },
+  methods: {
+    affirm () {
+      Dialog.confirm({
+        title: '提示',
+        message: '是否确认审批同意？',
+        confirmButtonText: '确认',
+        confirmButtonColor: '#2196F3',
+        beforeClose: (action, done) => {
+          if (action === 'confirm') {
+            setTimeout(() => {
+              done()
+              Toast.setDefaultOptions({ duration: 1000 })
+              Toast('提交成功')
+              setTimeout(() => {
+                let HistoryPath = this.$route.query.History
+                this.$router.replace({path: HistoryPath})
+              }, 1000)
+            }, 1000)
+          } else {
+            done()
+          }
+        }
+      }).then(() => {
+        // on confirm
+      }).catch(() => {
+        // on cancel
+      })
+    },
+    refuse () {
+      Dialog.confirm({
+        title: '提示',
+        message: '是否确认审批拒绝？',
+        confirmButtonText: '确认',
+        confirmButtonColor: '#2196F3',
+        beforeClose: (action, done) => {
+          if (action === 'confirm') {
+            setTimeout(() => {
+              done()
+              Toast.setDefaultOptions({ duration: 1000 })
+              Toast('拒绝成功')
+              setTimeout(() => {
+                let HistoryPath = this.$route.query.History
+                this.$router.replace({path: HistoryPath})
+              }, 1000)
+            }, 1000)
+          } else {
+            done()
+          }
+        }
+      }).then(() => {
+        // on confirm
+      }).catch(() => {
+        // on cancel
+      })
+    }
+  }
 }
 </script>
 
