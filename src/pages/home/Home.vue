@@ -65,7 +65,7 @@
         <div class="home-box-footer"></div>
       </van-col>
     </van-row>
-    <van-row class="home-box home-box-last">
+    <van-row safe-area-inset-bottom class="home-box home-box-last">
       <van-col span="24">
         <div class="home-box-title"><i class="iconfont"></i>待处理事项</div>
       </van-col>
@@ -79,13 +79,11 @@
       </van-col>
     </van-row>
     <div class="box-bottom"></div>
-    <tab-bottom :CurrentPage="CurrentPage"></tab-bottom>
   </div>
 </template>
 
 <script>
 import { Row, Col, NavBar, Toast, Grid, GridItem } from 'vant'
-import TabBottom from '@/components/Tabbar/Tabbottom'
 import ListItem from '@/components/list/ListItem'
 export default {
   components: {
@@ -95,13 +93,11 @@ export default {
     [Col.name]: Col,
     [Grid.name]: Grid,
     [GridItem.name]: GridItem,
-    TabBottom,
     ListItem
   },
   name: 'Home',
   data () {
     return {
-      CurrentPage: 0,
       listdata: [{
         id: '0001',
         name: 'CH-12 Book Purchasing',
@@ -157,7 +153,8 @@ export default {
   $Color5: #fcce44;
   .home {
     width: 100%;
-    height: 100vh;
+    height: 100%;
+    min-height: calc(100vh);
     background-color: #f1f1f1;
     position: relative;
     &-nav {
@@ -234,12 +231,13 @@ export default {
         .color5{background: $Color5}
       }
     }
-    &-box-last {
-      margin-bottom: .68rem;
-    }
     .box-bottom{
       height: 1rem;
-      background: #fff;
+      background: #f1f1f1;
+    }
+    &-box-last {
+      margin-bottom: calc(constant(safe-area-inset-bottom) + .24rem);
+      margin-bottom: calc(env(safe-area-inset-bottom) + .24rem);
     }
   }
 </style>

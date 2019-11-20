@@ -29,12 +29,11 @@
         <div></div>
       </van-tab>
     </van-tabs>
-    <tab-bottom :CurrentPage="CurrentPage"></tab-bottom>
+    <div class="box-bottom"></div>
   </div>
 </template>
 
 <script>
-import TabBottom from '@/components/Tabbar/Tabbottom'
 import ListContent from './components/ListContent'
 import { Search, Tab, Tabs } from 'vant'
 export default {
@@ -43,13 +42,11 @@ export default {
     [Search.name]: Search,
     [Tab.name]: Tab,
     [Tabs.name]: Tabs,
-    TabBottom,
     ListContent
   },
   data () {
     return {
       value: '',
-      CurrentPage: 1,
       tabactive: parseInt(this.$route.params.tabactive)
     }
   }
@@ -59,7 +56,7 @@ export default {
 <style lang="scss" scoped>
   .list{
     width: 100%;
-    height: 100vh;
+    height: calc(100vh - 1rem);
     background-color: #f1f1f1;
     position: relative;
     .tab{
@@ -69,6 +66,11 @@ export default {
       i{
         margin-right: 5px;
       }
+    }
+    .box-bottom{
+      height: constant(safe-area-inset-bottom);
+      height: env(safe-area-inset-bottom);
+      background: #f1f1f1;
     }
   }
 </style>

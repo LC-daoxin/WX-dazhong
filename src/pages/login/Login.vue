@@ -1,8 +1,8 @@
 <template>
   <div class="login">
+    <img class="login-bglogo" src="@/assets/styles/img/bglog.png" height="53" width="104"/>
     <div class="login-form">
       <div class="login-title DoHyeonfont">
-        <img class="login-bglogo" src="@/assets/styles/img/bglog.png" height="53" width="104"/>
         <h1 class="login-title-h1">Welcome</h1>
         <h2 class="login-title-h2">to VWED !</h2>
       </div>
@@ -49,10 +49,16 @@ export default {
   .login{
     width: 100%;
     height: 100%;
-    background: url('~@styles/img/login-bg.png') no-repeat;
+    background: url('~@styles/img/login-bg.min.png') no-repeat;
     background-size: cover;
     position: fixed;
     z-index: -10;
+    .login-bglogo{
+      opacity: 1;
+      position: absolute;
+      top: 4vw;
+      left: 4vw;
+    }
     .login-form{
       box-sizing: border-box;
       display: flex;
@@ -70,12 +76,8 @@ export default {
       .login-title{
         font-weight: 900;
         position: absolute;
-        top: -3.8rem;
+        top: -2rem;
         left: .1rem;
-        .login-bglogo{
-          opacity: 1;
-          margin-bottom: .8rem;
-        }
         .login-title-h1{
           font-size: 1rem;
           font-weight: 900;
@@ -153,7 +155,7 @@ export default {
       height: 6rem;
       position: absolute;
       bottom: 0;
-      background: url('~@styles/img/Banner.jpg') no-repeat;
+      background: url('~@styles/img/Banner.min.jpg') no-repeat;
       background-size: auto 100%;
       background-position: 45%;
       z-index: -1;

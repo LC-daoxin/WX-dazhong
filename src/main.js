@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import '@vant/touch-emulator' // 在桌面端上模拟移动端 touch 事件
 import VueI18n from 'vue-i18n' // 国际化
+import VueScrollLock from 'vue-scroll-lock' // 子元素 scroll 父元素容器不跟随滚动（兼容PC、移动端）
 
 import '@styles/reset.css'
 import '@styles/border.css'
@@ -13,6 +14,7 @@ import '@styles/iconfont.css'
 Vue.config.productionTip = false
 
 Vue.use(VueI18n)
+Vue.use(VueScrollLock)
 
 const i18n = new VueI18n({
   locale: 'zh-CN', // 语言标识

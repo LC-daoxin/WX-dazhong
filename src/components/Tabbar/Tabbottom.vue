@@ -13,7 +13,7 @@
           <i class="iconfont iconAdd">&#xe61d;</i>
         </div>
       </van-tabbar-item>
-      <van-tabbar-item icon="search" @click="handleClick">搜索</van-tabbar-item>
+      <van-tabbar-item icon="search" to="/Search" replace>搜索</van-tabbar-item>
       <van-tabbar-item icon="setting-o" @click="handleClick">我的</van-tabbar-item>
     </van-tabbar>
     <van-action-sheet

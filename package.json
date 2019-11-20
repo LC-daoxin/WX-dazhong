@@ -17,7 +17,8 @@
     "vant": "^2.2.13-beta.0",
     "vue": "^2.5.2",
     "vue-i18n": "^8.15.0",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vue-scroll-lock": "0.0.6"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
