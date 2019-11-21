@@ -23,6 +23,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @import '~@styles/main.scss';
   .main{
+    height: 100%;
+    min-height: 100vh;
+    background: $bg;
   }
 </style>
