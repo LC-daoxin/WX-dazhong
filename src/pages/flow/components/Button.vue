@@ -24,12 +24,11 @@ export default {
           if (action === 'confirm') {
             setTimeout(() => {
               done()
-              Toast.setDefaultOptions({ duration: 1000 })
-              Toast('提交成功')
+              Toast.success('提交成功')
               setTimeout(() => {
                 let HistoryPath = this.$route.query.History
                 this.$router.replace({path: HistoryPath})
-              }, 1000)
+              }, 800)
             }, 1000)
           } else {
             done()
@@ -51,12 +50,11 @@ export default {
           if (action === 'confirm') {
             setTimeout(() => {
               done()
-              Toast.setDefaultOptions({ duration: 1000 })
-              Toast('拒绝成功')
+              Toast.success('拒绝成功')
               setTimeout(() => {
                 let HistoryPath = this.$route.query.History
                 this.$router.replace({path: HistoryPath})
-              }, 1000)
+              }, 800)
             }, 1000)
           } else {
             done()

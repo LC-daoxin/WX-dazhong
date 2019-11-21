@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="Search">
     <form action="/">
       <van-search
         v-model="search"
@@ -97,5 +97,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+  @import '~@styles/main.scss';
 </style>

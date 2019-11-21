@@ -33,6 +33,14 @@ export default new Router({
             title: 'My Pending'
           },
           component: () => import('@/pages/list/List')
+        },
+        {
+          path: '/Mine',
+          name: 'Mine',
+          meta: {
+            title: 'Mine'
+          },
+          component: () => import('@/pages/mine/Mine')
         }
       ]
     }, {

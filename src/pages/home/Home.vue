@@ -69,11 +69,12 @@
       <van-col span="24">
         <div class="home-box-title"><i class="iconfont"></i>待处理事项</div>
       </van-col>
-      <van-row>
-        <van-col span="24" v-for="item of listdata" :key="item.id">
-          <list-item :item="item"></list-item>
-        </van-col>
-      </van-row>
+      <van-col span="24" v-for="item of listdata" :key="item.id">
+        <list-item :item="item"></list-item>
+      </van-col>
+      <van-col span="24" @click="go">
+        <div class="home-box-more van-hairline--top">显示更多</div>
+      </van-col>
       <van-col span="24">
         <div class="home-box-footer"></div>
       </van-col>
@@ -137,6 +138,10 @@ export default {
     }
   },
   methods: {
+    go () {
+      let CurrentPath = this.$route.path
+      this.$router.replace({path: '/List/0', query: { History: CurrentPath }})
+    },
     handleClick () {
       Toast('暂未开发')
     }
@@ -154,8 +159,7 @@ export default {
   .home {
     width: 100%;
     height: 100%;
-    min-height: calc(100vh);
-    background-color: #f1f1f1;
+    min-height: 100vh;
     position: relative;
     &-nav {
       background: $bgDeepColor;
@@ -165,7 +169,6 @@ export default {
         color: #fff;
         font-size: .36rem;
         font-weight: 900;
-        // font-family: 'Cabin-Regular';
       }
       .logo{
         width: 1.2rem;
@@ -183,24 +186,30 @@ export default {
       margin: .24rem .2rem;
       box-shadow: .06rem .06rem .14rem rgba(0,0,0,.08);
       border-radius: 0 0 .1rem .1rem;
+      background: #fff;
       &-title{
         display: flex;
         align-items: center;
         box-sizing: border-box;
-        // border-left: .14rem solid $bgColor;
         border-radius: .1rem .1rem 0 0;
         height: .74rem;
         padding: .16rem .3rem 0;
-        background: #fff;
-        // font-family: 'Cabin-Regular';
         font: {
           size: .34rem;
           weight: 700
         }
       }
+      &-more{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: .6rem;
+        font-size: .28rem;
+        font-weight: 700;
+        padding-top: .1rem;
+      }
       &-footer{
         height: .1rem;
-        background: #fff;
         border-radius: 0 0 .1rem .1rem;
       }
       .iconbox{
@@ -233,7 +242,6 @@ export default {
     }
     .box-bottom{
       height: 1rem;
-      background: #f1f1f1;
     }
     &-box-last {
       margin-bottom: calc(constant(safe-area-inset-bottom) + .24rem);

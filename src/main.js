@@ -5,7 +5,7 @@ import App from './App'
 import router from './router'
 import '@vant/touch-emulator' // 在桌面端上模拟移动端 touch 事件
 import VueI18n from 'vue-i18n' // 国际化
-import VueScrollLock from 'vue-scroll-lock' // 子元素 scroll 父元素容器不跟随滚动（兼容PC、移动端）
+import { Toast } from 'vant' // 全局设置
 
 import '@styles/reset.css'
 import '@styles/border.css'
@@ -14,7 +14,6 @@ import '@styles/iconfont.css'
 Vue.config.productionTip = false
 
 Vue.use(VueI18n)
-Vue.use(VueScrollLock)
 
 const i18n = new VueI18n({
   locale: 'zh-CN', // 语言标识
@@ -25,6 +24,9 @@ const i18n = new VueI18n({
     'en-US': require('./common/lang/en') // 英文语言包
   }
 })
+
+Vue.use(Toast)
+Toast.setDefaultOptions({ duration: 700 }) // 全局轻提示设置
 
 router.beforeEach((to, from, next) => {
   /* 路由发生变化修改页面title */

@@ -54,10 +54,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @import '~@styles/main.scss';
   .list{
     width: 100%;
-    height: calc(100vh - 1rem);
-    background-color: #f1f1f1;
+    height: 100%;
+    min-height: calc(100vh - 1rem);
+    background-color: $bg;
     position: relative;
     .tab{
       display: flex;
@@ -70,7 +72,6 @@ export default {
     .box-bottom{
       height: constant(safe-area-inset-bottom);
       height: env(safe-area-inset-bottom);
-      background: #f1f1f1;
     }
   }
 </style>

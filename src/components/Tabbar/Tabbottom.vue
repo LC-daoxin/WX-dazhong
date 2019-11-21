@@ -7,20 +7,23 @@
       safe-area-inset-bottom
     >
       <van-tabbar-item icon="home-o" to="/Home" replace>主页</van-tabbar-item>
-      <van-tabbar-item icon="todo-list-o" info="5" to="/List/0" replace>待办</van-tabbar-item>
+      <van-tabbar-item icon="todo-list-o" :info="info" to="/List/0" replace>待办</van-tabbar-item>
       <van-tabbar-item @click="showPopup">
         <div class="icon-middle" slot="icon">
           <i class="iconfont iconAdd">&#xe61d;</i>
         </div>
       </van-tabbar-item>
       <van-tabbar-item icon="search" to="/Search" replace>搜索</van-tabbar-item>
-      <van-tabbar-item icon="setting-o" @click="handleClick">我的</van-tabbar-item>
+      <van-tabbar-item icon="setting-o" to="/Mine" replace>我的</van-tabbar-item>
     </van-tabbar>
     <van-action-sheet
       v-model="show"
       :actions="actions"
-      :round="false"
+      cancel-text="取消"
       @select="onSelect"
+      @cancel="onCancel"
+      :round="false"
+      safe-area-inset-bottom
     />
   </div>
 </template>
@@ -45,13 +48,11 @@ export default {
       actions: [
         {name: '发起流程', subname: '暂无页面'},
         {name: '其他选项', subname: '暂无页面'}
-      ]
+      ],
+      info: 10
     }
   },
   methods: {
-    handleClick () {
-      Toast('暂无页面')
-    },
     showPopup () {
       this.show = true
     },
@@ -60,6 +61,9 @@ export default {
       // 可以通过 close-on-click-action 属性开启自动关闭
       this.show = false
       Toast('暂未开发')
+    },
+    onCancel () {
+      this.show = false
     }
   }
 }
@@ -69,6 +73,7 @@ export default {
   @import '~@styles/main.scss';
   .tabbar{
     font-weight: 400;
+    background: #fff;
     >>> .van-tabbar-item{
       color: #555;
       .van-icon{
