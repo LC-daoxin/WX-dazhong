@@ -10,20 +10,20 @@
     </van-nav-bar>
     <van-row class="home-box">
       <van-col span="24">
-        <div class="home-box-title"><i class="iconfont"></i>Pending/待办</div>
+        <div class="home-box-title"><i class="iconfont">&#xeb93;</i>{{$t('Home.Pending')}}</div>
       </van-col>
       <van-col span="24">
         <van-grid :column-num="4" :border="false">
-          <van-grid-item to="/List/0" replace>
+          <van-grid-item to="/List/Pending/0" replace>
             <div class="iconbox">
               <i class="iconfont icon-img color1">&#xeb93;</i>
-              <span>My Pending</span>
+              <span>{{$t('Home.MyPending')}}</span>
             </div>
           </van-grid-item>
-          <van-grid-item to="/List/1" replace>
+          <van-grid-item to="/List/Pending/1" replace>
             <div class="iconbox">
               <i class="iconfont icon-img color2">&#xeb9a;</i>
-              <span>BM Pending</span>
+              <span>{{$t('Home.BMPending')}}</span>
             </div>
           </van-grid-item>
           <van-grid-item />
@@ -36,26 +36,26 @@
     </van-row>
     <van-row class="home-box">
       <van-col span="24">
-        <div class="home-box-title"><i class="iconfont"></i>Query/查询</div>
+        <div class="home-box-title"><i class="iconfont">&#xeb93;</i>{{$t('Home.Query')}}</div>
       </van-col>
       <van-col span="24">
         <van-grid :column-num="4" :border="false">
-          <van-grid-item @click="handleClick">
+          <van-grid-item to="/List/Query/0" replace>
             <div class="iconbox">
               <i class="iconfont icon-img color4">&#xeb95;</i>
-              <span>My Created</span>
+              <span>{{$t('Home.MyCreated')}}</span>
             </div>
           </van-grid-item>
-          <van-grid-item @click="handleClick">
+          <van-grid-item to="/List/Query/1" replace>
             <div class="iconbox">
               <i class="iconfont icon-img color5">&#xeb97;</i>
-              <span>My Request</span>
+              <span>{{$t('Home.MyRequest')}}</span>
             </div>
           </van-grid-item>
-          <van-grid-item @click="handleClick">
+          <van-grid-item to="/List/Query/2" replace>
             <div class="iconbox">
               <i class="iconfont icon-img color3">&#xeb99;</i>
-              <span>My Approve</span>
+              <span>{{$t('Home.MyApprove')}}</span>
             </div>
           </van-grid-item>
           <van-grid-item />
@@ -67,13 +67,13 @@
     </van-row>
     <van-row safe-area-inset-bottom class="home-box home-box-last">
       <van-col span="24">
-        <div class="home-box-title"><i class="iconfont"></i>待处理事项</div>
+        <div class="home-box-title"><i class="iconfont">&#xeb93;</i>{{$t('Home.Matters')}}</div>
       </van-col>
       <van-col span="24" v-for="item of listdata" :key="item.id">
         <list-item :item="item"></list-item>
       </van-col>
-      <van-col span="24" @click="go">
-        <div class="home-box-more van-hairline--top">显示更多</div>
+      <van-col span="24" @click="goMore">
+        <div class="home-box-more van-hairline--top">{{$t('Home.ShowMore')}}</div>
       </van-col>
       <van-col span="24">
         <div class="home-box-footer"></div>
@@ -138,12 +138,13 @@ export default {
     }
   },
   methods: {
-    go () {
+    goMore () {
       let CurrentPath = this.$route.path
-      this.$router.replace({path: '/List/0', query: { History: CurrentPath }})
+      this.$router.replace({path: '/List/Pending/0', query: { History: CurrentPath }})
+      this.$store.commit('changePage', 1)
     },
     handleClick () {
-      Toast('暂未开发')
+      Toast(this.$t('Home.Undeveloped'))
     }
   }
 }
@@ -197,6 +198,11 @@ export default {
         font: {
           size: .34rem;
           weight: 700
+        }
+        i{
+          font-size: .34rem;
+          padding-right: .1rem;
+          padding-bottom: .04rem;
         }
       }
       &-more{

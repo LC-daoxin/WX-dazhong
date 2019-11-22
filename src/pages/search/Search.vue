@@ -3,10 +3,10 @@
     <form action="/">
       <van-search
         v-model="search"
-        placeholder="请输入搜索关键词"
+        :placeholder="$t('Search.InputText')"
         show-action
       >
-        <div slot="action">搜索</div>
+        <div slot="action">{{$t('Home.Search')}}</div>
       </van-search>
     </form>
     <van-dropdown-menu>
@@ -17,6 +17,8 @@
           type="date"
           @confirm="onConfirmTime1"
           @cancel="onCancelTime1"
+          :confirm-button-text="$t('Search.Confirm')"
+          :cancel-button-text="$t('Search.Cancel')"
         />
       </van-dropdown-item>
       <van-dropdown-item :title="SelectTimeEnd" ref="time2">
@@ -25,6 +27,8 @@
           type="date"
           @confirm="onConfirmTime2"
           @cancel="onCancelTime2"
+          :confirm-button-text="$t('Search.Confirm')"
+          :cancel-button-text="$t('Search.Cancel')"
         />
       </van-dropdown-item>
     </van-dropdown-menu>
@@ -44,12 +48,12 @@ export default {
   data () {
     return {
       currentDate: new Date(),
-      SelectTimeStart: '起始时间',
-      SelectTimeEnd: '结束时间',
+      SelectTimeStart: this.$t('Search.StartTime'),
+      SelectTimeEnd: this.$t('Search.EndTime'),
       search: '',
       value: '',
       option: [
-        { text: '流程名称', value: '' },
+        { text: this.$t('Home.ProcessName'), value: '' },
         { text: 'CF-02 Travel Expenses - Borrowing Request/差旅费相关-员工借款申请', value: 0 },
         { text: 'CF-03 Travel Expenses - Domestic Travel Expense Claim/差旅费相关-员工国内出差费报销', value: 1 },
         { text: 'CF-04 Employee Travel Expense Claim -Overseas/员工国际出差费用报销', value: 3 },
@@ -82,7 +86,7 @@ export default {
     },
     onCancelTime1 (value) {
       this.$refs.time1.toggle()
-      this.SelectTimeStart = '起始时间'
+      this.SelectTimeStart = this.$t('Search.StartTime')
     },
     onConfirmTime2 (value) {
       this.$refs.time2.toggle()
@@ -90,7 +94,7 @@ export default {
     },
     onCancelTime2 (value) {
       this.$refs.time2.toggle()
-      this.SelectTimeEnd = '结束时间'
+      this.SelectTimeEnd = this.$t('Search.EndTime')
     }
   }
 }

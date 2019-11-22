@@ -8,22 +8,22 @@
       </div>
       <div class="Mine-header-content">
         <div class="Mine-header-content-name">{{ userName }}</div>
-        <div class="Mine-header-content-position">职位：{{ userPosition }}</div>
+        <div class="Mine-header-content-position">{{$t('Mine.Position')}}：{{ userPosition }}</div>
       </div>
     </div>
     <div class="Mine-box boxStyle">
       <van-cell-group :border="false">
-        <van-cell icon="setting-o" title="个人信息" @click="handleClick" is-link/>
-        <van-cell icon="desktop-o" title="语言设置" @click="showPopupLang" is-link />
-        <van-cell icon="comment-o" title="消息通知" @click="handleClick" is-link />
-        <van-cell icon="service-o" title="帮助中心" @click="handleClick" is-link />
+        <van-cell icon="setting-o" :title="$t('Mine.Personal')" @click="handleClick" is-link/>
+        <van-cell icon="desktop-o" :title="$t('Mine.Language')" @click="showPopupLang" is-link />
+        <van-cell icon="comment-o" :title="$t('Mine.Message')" @click="handleClick" is-link />
+        <van-cell icon="service-o" :title="$t('Mine.Help')" @click="handleClick" is-link />
       </van-cell-group>
     </div>
     <div class="Mine-box">
       <van-cell-group :border="false">
         <van-cell @click="showPopupExit">
           <template slot="title">
-            <div class="exit-title">退出登录</div>
+            <div class="exit-title">{{$t('Mine.LogOut')}}</div>
           </template>
         </van-cell>
       </van-cell-group>
@@ -31,7 +31,7 @@
     <van-action-sheet
       v-model="showLang"
       :actions="Lang"
-      cancel-text="取消"
+      :cancel-text="$t('Home.Cancel')"
       @select="onLangSelect"
       @cancel="onLangCancel"
       :round="false"
@@ -40,7 +40,7 @@
     <van-action-sheet
       v-model="showExit"
       :actions="Exit"
-      cancel-text="取消"
+      :cancel-text="$t('Home.Cancel')"
       @select="onExitSelect"
       @cancel="onExitCancel"
       :round="false"
@@ -66,12 +66,12 @@ export default {
       userPosition: 'IT Supervisor',
       showLang: false,
       Lang: [
-        { name: '中文' },
-        { name: '英文' }
+        { name: '简体中文' },
+        { name: 'English' }
       ],
       showExit: false,
       Exit: [
-        { name: '退出登录', color: '#ee0a23', className: 'exit-text' }
+        { name: this.$t('Mine.LogOut'), color: '#ee0a23', className: 'exit-text' }
       ]
     }
   },
@@ -79,9 +79,16 @@ export default {
     showPopupLang () {
       this.showLang = true
     },
-    onLangSelect () {
+    onLangSelect (item, index) {
+      console.log(index)
+      if (index === 1) {
+        this.$i18n.locale = 'en-US'
+        localStorage.setItem('lang', 'en-US')
+      } else if (index === 0) {
+        this.$i18n.locale = 'zh-CN'
+        localStorage.setItem('lang', 'zh-CN')
+      }
       this.showLang = false
-      Toast('暂未开发')
     },
     onLangCancel () {
       this.showLang = false
@@ -99,7 +106,7 @@ export default {
       this.showExit = false
     },
     handleClick () {
-      Toast('暂未开发')
+      Toast(this.$t('Home.Undeveloped'))
     }
   }
 }

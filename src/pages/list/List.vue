@@ -3,10 +3,10 @@
     <form action="/">
       <van-search
         v-model="value"
-        placeholder="请输入搜索关键词"
+        :placeholder="$t('Search.InputText')"
         show-action
       >
-        <div slot="action">搜索</div>
+        <div slot="action">{{$t('Home.Search')}}</div>
       </van-search>
     </form>
     <van-tabs
@@ -15,18 +15,46 @@
       color="#2196F3"
       title-active-color="#2196F3"
       swipeable
+      v-if="ListItem === 'Pending'"
     >
       <van-tab>
         <div slot="title" class="tab">
           <i class="iconfont">&#xeb93;</i> My Pending
         </div>
-        <list-content></list-content>
+        <list-content ListType="MyPending"></list-content>
       </van-tab>
       <van-tab>
         <div slot="title" class="tab">
           <i class="iconfont">&#xeb9a;</i> BM Pending
         </div>
-        <div></div>
+        <list-content ListType="BMPending"></list-content>
+      </van-tab>
+    </van-tabs>
+    <van-tabs
+      v-model="tabactive"
+      :ellipsis="false"
+      color="#2196F3"
+      title-active-color="#2196F3"
+      swipeable
+      v-else-if="ListItem === 'Query'"
+    >
+      <van-tab>
+        <div slot="title" class="tab">
+          <i class="iconfont">&#xeb95;</i> My Created
+        </div>
+        <list-content ListType="MyCreated"></list-content>
+      </van-tab>
+      <van-tab>
+        <div slot="title" class="tab">
+          <i class="iconfont">&#xeb97;</i> My Request
+        </div>
+        <list-content ListType="MyRequest"></list-content>
+      </van-tab>
+      <van-tab>
+        <div slot="title" class="tab">
+          <i class="iconfont">&#xeb99;</i> My Approve
+        </div>
+        <list-content ListType="MyApprove"></list-content>
       </van-tab>
     </van-tabs>
     <div class="box-bottom"></div>
@@ -47,7 +75,8 @@ export default {
   data () {
     return {
       value: '',
-      tabactive: parseInt(this.$route.params.tabactive)
+      tabactive: parseInt(this.$route.params.tabactive),
+      ListItem: this.$route.params.ListItem
     }
   }
 }

@@ -27,10 +27,10 @@ export default new Router({
           component: () => import('@/pages/search/Search')
         },
         {
-          path: '/List/:tabactive',
+          path: '/List/:ListItem/:tabactive',
           name: 'List',
           meta: {
-            title: 'My Pending'
+            title: 'List'
           },
           component: () => import('@/pages/list/List')
         },

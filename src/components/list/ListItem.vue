@@ -2,8 +2,8 @@
   <div class="pending van-hairline--top" @click="go">
     <div class="pending-icon"><i class="iconfont">&#xeb91;</i></div>
     <div class="pending-content">
-      <div class="name col"><span class="title">流程名称：</span><span class="content">{{item.name}}</span></div>
-      <div class="name col"><span class="title">单据号：</span><span class="content">{{item.no}}</span></div>
+      <div class="name col"><span class="title">{{$t('Home.ProcessName')}}：</span><span class="content">{{item.name}}</span></div>
+      <div class="name col"><span class="title">{{$t('Home.ReferenceID')}}：</span><span class="content">{{item.no}}</span></div>
       <div class="text col"><i class="iconfont">&#xe790;</i>{{item.time}}</div>
       <div class="text col"><i class="iconfont">&#xe60c;</i>{{item.user}}</div>
     </div>
@@ -20,10 +20,14 @@ export default {
   filters: {
     status: function (value) {
       let Text
-      switch (value) {
-        case 'Active': Text = '进行中'; break
-        case 'Completed': Text = '已完成'; break
-        case 'Error': Text = '错误'; break
+      if (localStorage.getItem('lang') === 'zh-CN') {
+        switch (value) {
+          case 'Active': Text = '进行中'; break
+          case 'Completed': Text = '已完成'; break
+          case 'Error': Text = '错误'; break
+        }
+      } else {
+        Text = value
       }
       return Text
     }
@@ -69,7 +73,7 @@ export default {
         .title{
           font-weight: 700;
           display: inline-block;
-          width: 1.4rem;
+          min-width: 1.4rem;
           text-align: right;
         }
         .content{
@@ -99,6 +103,7 @@ export default {
       font-size: .24rem;
       height: .24rem;
       line-height: .24rem;
+      background: #fff;
       &.Active{
         color: $Active;
         border: 2px solid $Active;

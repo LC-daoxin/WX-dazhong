@@ -12,15 +12,15 @@
         </div>
         <div class="login-row login-username">
           <label for="login-name" class="label iconfont">&#xe64d;</label>
-          <input id="login-name" type="text" class="input-box" placeholder="Username"/>
+          <input id="login-name" type="text" class="input-box" :placeholder="$t('Login.Username')"/>
         </div>
         <div class="login-row login-password">
           <label for="login-password" class="label iconfont">&#xe644;</label>
-          <input id="login-password" type="password" class="input-box" placeholder="Password"/>
+          <input id="login-password" type="password" class="input-box" :placeholder="$t('Login.Password')"/>
         </div>
-        <div class="login-forget">Forget Password.?</div>
+        <div class="login-forget">{{$t('Login.Forget')}}.?</div>
         <router-link to="/Home" replace>
-          <button class="login-row login-button">登录</button>
+          <button class="login-row login-button">{{$t('Login.Login')}}</button>
         </router-link>
       </div>
     </div>

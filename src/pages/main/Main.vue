@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <router-view/>
-    <tab-bottom :CurrentPage="CurrentPage"></tab-bottom>
+    <tab-bottom></tab-bottom>
   </div>
 </template>
 
@@ -14,7 +14,6 @@ export default {
   },
   data () {
     return {
-      CurrentPage: 0,
       lock: true,
       bodyLock: true
     }

@@ -1,9 +1,10 @@
 <template>
   <van-list
-    class="list"
+    class="listContent"
     v-model="loading"
     :finished="finished"
-    finished-text="数据已加载完毕"
+    :finished-text="$t('List.DataLoaded')"
+    :loading-text="$t('List.Loading')"
     @load="onLoad"
   >
     <van-cell
@@ -21,6 +22,9 @@ import { List, Cell } from 'vant'
 import ListItem from '@/components/list/ListItem'
 export default {
   name: 'ListContent',
+  props: {
+    ListType: String
+  },
   components: {
     [List.name]: List,
     [Cell.name]: Cell,
@@ -28,7 +32,14 @@ export default {
   },
   data () {
     return {
-      list: [{
+      list: [],
+      loading: false,
+      finished: false
+    }
+  },
+  mounted () {
+    switch (this.ListType) {
+      case 'MyPending': this.list = [{
         id: '0001',
         name: 'CH-12 Book Purchasing',
         no: 'CH-2019-002523',
@@ -98,9 +109,11 @@ export default {
         status: 'Active',
         time: '2019-11-12 07:59:07',
         user: 'Ge, Chunfeng/葛春峰'
-      }],
-      loading: false,
-      finished: false
+      }]; break
+      case 'BMPending': break
+      case 'MyCreated': break
+      case 'MyRequest': break
+      case 'MyApprove': break
     }
   },
   methods: {
@@ -113,7 +126,7 @@ export default {
         // 加载状态结束
         this.loading = false
         // 数据全部加载完成
-        if (this.list.length === 10) {
+        if (this.list.length >= 0) {
           this.finished = true
         }
       }, 1000)
@@ -124,7 +137,7 @@ export default {
 
 <style lang="scss" scoped>
   @import '~@styles/main.scss';
-  .list{
+  .listContent{
     >>> .van-cell{
       padding: 0;
     }

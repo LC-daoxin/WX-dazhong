@@ -6,6 +6,7 @@ import router from './router'
 import '@vant/touch-emulator' // 在桌面端上模拟移动端 touch 事件
 import VueI18n from 'vue-i18n' // 国际化
 import { Toast } from 'vant' // 全局设置
+import store from './store'
 
 import '@styles/reset.css'
 import '@styles/border.css'
@@ -16,7 +17,7 @@ Vue.config.productionTip = false
 Vue.use(VueI18n)
 
 const i18n = new VueI18n({
-  locale: 'zh-CN', // 语言标识
+  locale: localStorage.getItem('lang') || 'en-US', // 语言标识
   // this.$i18n.locale
   // 通过切换locale的值来实现语言切换
   messages: {
@@ -41,6 +42,7 @@ new Vue({
   el: '#app',
   i18n,
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

@@ -1,7 +1,7 @@
 <template>
   <div class="K-button">
-    <button type="button" class="btn btn-default" @click="affirm"><i class="iconfont">&#xed1d;</i>同意</button>
-    <button type="button" class="btn btn-warning" @click="refuse"><i class="iconfont">&#xe669;</i>拒绝</button>
+    <button type="button" class="btn btn-default" @click="affirm"><i class="iconfont">&#xed1d;</i>{{$t('Process.Agree')}}</button>
+    <button type="button" class="btn btn-warning" @click="refuse"><i class="iconfont">&#xe669;</i>{{$t('Process.Refuse')}}</button>
   </div>
 </template>
 
@@ -16,15 +16,16 @@ export default {
   methods: {
     affirm () {
       Dialog.confirm({
-        title: '提示',
-        message: '是否确认审批同意？',
-        confirmButtonText: '确认',
+        title: this.$t('Process.Title'),
+        message: this.$t('Process.AgreeText'),
+        confirmButtonText: this.$t('Process.Confirm'),
         confirmButtonColor: '#2196F3',
+        cancelButtonText: this.$t('Process.Cancel'),
         beforeClose: (action, done) => {
           if (action === 'confirm') {
             setTimeout(() => {
               done()
-              Toast.success('提交成功')
+              Toast.success(this.$t('Process.SubmitOKText'))
               setTimeout(() => {
                 let HistoryPath = this.$route.query.History
                 this.$router.replace({path: HistoryPath})
@@ -42,15 +43,16 @@ export default {
     },
     refuse () {
       Dialog.confirm({
-        title: '提示',
-        message: '是否确认审批拒绝？',
-        confirmButtonText: '确认',
+        title: this.$t('Process.Title'),
+        message: this.$t('Process.RefuseText'),
+        confirmButtonText: this.$t('Process.Confirm'),
         confirmButtonColor: '#2196F3',
+        cancelButtonText: this.$t('Process.Cancel'),
         beforeClose: (action, done) => {
           if (action === 'confirm') {
             setTimeout(() => {
               done()
-              Toast.success('拒绝成功')
+              Toast.success(this.$t('Process.RefuseOKText'))
               setTimeout(() => {
                 let HistoryPath = this.$route.query.History
                 this.$router.replace({path: HistoryPath})

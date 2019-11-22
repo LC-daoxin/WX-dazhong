@@ -5,21 +5,22 @@
       v-model="active"
       active-color="#2196F3"
       safe-area-inset-bottom
+      @change="handleClickPage"
     >
-      <van-tabbar-item icon="home-o" to="/Home" replace>主页</van-tabbar-item>
-      <van-tabbar-item icon="todo-list-o" :info="info" to="/List/0" replace>待办</van-tabbar-item>
+      <van-tabbar-item icon="home-o" to="/Home" replace>{{$t('Home.Home')}}</van-tabbar-item>
+      <van-tabbar-item icon="todo-list-o" :info="info" to="/List/Pending/0" replace>{{$t('Home.Pending')}}</van-tabbar-item>
       <van-tabbar-item @click="showPopup">
         <div class="icon-middle" slot="icon">
           <i class="iconfont iconAdd">&#xe61d;</i>
         </div>
       </van-tabbar-item>
-      <van-tabbar-item icon="search" to="/Search" replace>搜索</van-tabbar-item>
-      <van-tabbar-item icon="setting-o" to="/Mine" replace>我的</van-tabbar-item>
+      <van-tabbar-item icon="search" to="/Search" replace>{{$t('Home.Search')}}</van-tabbar-item>
+      <van-tabbar-item icon="setting-o" to="/Mine" replace>{{$t('Home.Mine')}}</van-tabbar-item>
     </van-tabbar>
     <van-action-sheet
       v-model="show"
       :actions="actions"
-      cancel-text="取消"
+      :cancel-text="$t('Home.Cancel')"
       @select="onSelect"
       @cancel="onCancel"
       :round="false"
@@ -32,9 +33,6 @@
 import { Tabbar, TabbarItem, Toast, ActionSheet } from 'vant'
 export default {
   name: 'TabBottom',
-  props: {
-    CurrentPage: Number
-  },
   components: {
     [Tabbar.name]: Tabbar,
     [TabbarItem.name]: TabbarItem,
@@ -43,14 +41,31 @@ export default {
   },
   data () {
     return {
-      active: this.CurrentPage,
+      active: this.$store.state.CurrentPage,
       show: false,
       actions: [
-        {name: '发起流程', subname: '暂无页面'},
-        {name: '其他选项', subname: '暂无页面'}
+        {name: this.$t('Home.NewProcess'), subname: this.$t('Home.NoPage')},
+        {name: this.$t('Home.OtherOptions'), subname: this.$t('Home.NoPage')}
       ],
       info: 10
     }
+  },
+  computed: {
+    CurrentPage () {
+      return this.$store.state.CurrentPage // 返回一个结果让 watch 来监听
+    }
+  },
+  watch: {
+    CurrentPage (val, oldVal) { // 监听 Vuex 状态管理中的CurrentPage变化 使得当前底部标签栏切换标签
+      this.active = val
+    }
+  },
+  mounted () {
+    this.checkCurrentPage(this.$route.path) // 刷新页面时 根据当前URL 切换标签
+    this.$router.beforeEach((to, from, next) => { // 跳转时 根据跳转后URL 切换标签
+      this.checkCurrentPage(to.path)
+      next()
+    })
   },
   methods: {
     showPopup () {
@@ -60,10 +75,27 @@ export default {
       // 默认情况下，点击选项时不会自动关闭菜单
       // 可以通过 close-on-click-action 属性开启自动关闭
       this.show = false
-      Toast('暂未开发')
+      Toast(this.$t('Home.Undeveloped'))
     },
     onCancel () {
       this.show = false
+    },
+    handleClickPage (active) {
+      let lastPage = this.$store.state.CurrentPage
+      if (active === 2 && lastPage !== 2) {
+        this.active = lastPage
+      } else {
+        this.$store.commit('changePage', active)
+      }
+    },
+    checkCurrentPage (path) { // 判断URL 对应的页面 更新Vuex 状态管理中的CurrentPage
+      let refreshURL = path.substring(1).split('/')[0]
+      switch (refreshURL) {
+        case 'Home': this.$store.commit('changePage', 0); break
+        case 'List': this.$store.commit('changePage', 1); break
+        case 'Search': this.$store.commit('changePage', 3); break
+        case 'Mine': this.$store.commit('changePage', 4); break
+      }
     }
   }
 }
