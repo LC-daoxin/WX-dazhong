@@ -36,7 +36,10 @@
       <div class="history-container">
         <div class="history-head">
           <div class="history-head-title">
-            <i class="iconfont">&#xeb9a;</i>历史记录
+            <i class="iconfont">&#xe6c7;</i>{{$t('Search.HistoryTitle')}}
+          </div>
+          <div class="history-head-Clean" @click="CleanHistory">
+            {{$t('Search.Clean')}} <i class="iconfont">&#xe667;</i>
           </div>
         </div>
         <ul class="history-items">
@@ -151,14 +154,18 @@ export default {
       this.HistoryList.splice(type, 1)
       this.SaveSearch(this.HistoryList)
     },
-    handleHistory (Event) {
+    CleanHistory () {
+      this.HistoryList = []
+      localStorage.removeItem('SearchWord')
+    },
+    handleHistory (Event) { // 点击历史搜索显示到输入框里
       this.search = Event.currentTarget.getElementsByTagName('span')[0].innerText
     },
     handleSearch () {
       if (this.search !== '') { // 先判断输入的是不是空格
         if (localStorage.getItem('SearchWord') == null) {
           this.SaveSearch(this.search)
-          this.HistoryList.push(this.GetSearch())
+          this.HistoryList = this.GetSearch()
         } else {
           let HistoryArr = this.GetSearch()
           HistoryArr.unshift(this.search) // 最新的搜索记录添加到头部
@@ -208,21 +215,48 @@ export default {
   .Search{
     .history{
       padding: .2rem;
-      .history-items {
-        margin-top: .14rem;
-        li {
-          position: relative;
-          display: inline-block;
-          max-width: 99%;
-          margin-top: .12rem;
-          .tag{
-            margin-right: .2rem;
-            padding: .1rem .12rem;
-            font-size: .26rem;
-            height: .36rem;
-            line-height: .36rem;
-            .tagSpan{
-              padding-right: .02rem;
+      .history-container{
+        .history-head{
+          display: flex;
+          color: #333;
+          font-size: .26rem;
+          &-title{
+            flex: 1;
+            display: flex;
+            align-items: center;
+            padding-left: .2rem;
+            i{
+              margin-right: .1rem;
+            }
+          }
+          &-Clean{
+            flex: 1;
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: center;
+            padding-left: .2rem;
+            padding-right: .2rem;
+            i{
+              margin-right: .1rem;
+            }
+          }
+        }
+        .history-items {
+          margin-top: .14rem;
+          li {
+            position: relative;
+            display: inline-block;
+            max-width: 99%;
+            margin-top: .12rem;
+            .tag{
+              margin-right: .2rem;
+              padding: .1rem .12rem;
+              font-size: .26rem;
+              height: .36rem;
+              line-height: .36rem;
+              .tagSpan{
+                padding-right: .02rem;
+              }
             }
           }
         }

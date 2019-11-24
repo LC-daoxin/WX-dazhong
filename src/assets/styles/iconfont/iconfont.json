@@ -6,6 +6,27 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "287169",
+      "name": "删除",
+      "font_class": "shanchu",
+      "unicode": "e62d",
+      "unicode_decimal": 58925
+    },
+    {
+      "icon_id": "423809",
+      "name": "历史轨迹",
+      "font_class": "lishiguiji",
+      "unicode": "e6c7",
+      "unicode_decimal": 59079
+    },
+    {
+      "icon_id": "840996",
+      "name": "删除",
+      "font_class": "icon7",
+      "unicode": "e667",
+      "unicode_decimal": 58983
+    },
+    {
       "icon_id": "937495",
       "name": "down",
       "font_class": "down",
@@ -18,6 +39,20 @@
       "font_class": "up",
       "unicode": "e611",
       "unicode_decimal": 58897
+    },
+    {
+      "icon_id": "1104704",
+      "name": "未标题-6",
+      "font_class": "weibiaoti6",
+      "unicode": "e60d",
+      "unicode_decimal": 58893
+    },
+    {
+      "icon_id": "1104707",
+      "name": "未标题-9",
+      "font_class": "weibiaoti9",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
     },
     {
       "icon_id": "1117947",
@@ -53,6 +88,13 @@
       "font_class": "xiazai1",
       "unicode": "e639",
       "unicode_decimal": 58937
+    },
+    {
+      "icon_id": "1368560",
+      "name": "历史",
+      "font_class": "history",
+      "unicode": "e603",
+      "unicode_decimal": 58883
     },
     {
       "icon_id": "2028212",
@@ -102,6 +144,13 @@
       "font_class": "mingcheng",
       "unicode": "e758",
       "unicode_decimal": 59224
+    },
+    {
+      "icon_id": "7674900",
+      "name": "历史",
+      "font_class": "lishijilu",
+      "unicode": "e718",
+      "unicode_decimal": 59160
     },
     {
       "icon_id": "7766710",
@@ -277,6 +326,13 @@
       "font_class": "icon-test2",
       "unicode": "e63a",
       "unicode_decimal": 58938
+    },
+    {
+      "icon_id": "8776843",
+      "name": "edit",
+      "font_class": "icon-test9",
+      "unicode": "e63d",
+      "unicode_decimal": 58941
     },
     {
       "icon_id": "8777038",

@@ -58,6 +58,15 @@ export default {
   watch: {
     CurrentPage (val, oldVal) { // 监听 Vuex 状态管理中的CurrentPage变化 使得当前底部标签栏切换标签
       this.active = val
+    },
+    // 侦听语言变化，从而改变数组
+    '$i18n.locale' () {
+      // this.$set(this.actions, 0, {name: this.$t('Home.NewProcess'), subname: this.$t('Home.NoPage')})
+      // this.$set(this.actions, 1, {name: this.$t('Home.OtherOptions'), subname: this.$t('Home.NoPage')})
+      this.actions = [
+        {name: this.$t('Home.NewProcess'), subname: this.$t('Home.NoPage')},
+        {name: this.$t('Home.OtherOptions'), subname: this.$t('Home.NoPage')}
+      ]
     }
   },
   mounted () {

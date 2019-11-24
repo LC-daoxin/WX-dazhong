@@ -75,6 +75,13 @@ export default {
       ]
     }
   },
+  watch: {
+    // 侦听语言变化，从而改变数组
+    '$i18n.locale' () {
+      this.$set(this.Exit, 0, {name: this.$t('Mine.LogOut'), color: '#ee0a23', className: 'exit-text'})
+      // this.Exit = [{ name: this.$t('Mine.LogOut'), color: '#ee0a23', className: 'exit-text' }]
+    }
+  },
   methods: {
     showPopupLang () {
       this.showLang = true

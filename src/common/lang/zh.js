@@ -49,7 +49,9 @@ module.exports = {
     EndTime: '结束时间',
     InputText: '请输入搜索关键词',
     Confirm: '确认',
-    Cancel: '取消'
+    Cancel: '取消',
+    HistoryTitle: '历史记录',
+    Clean: '清空'
   },
   Mine: {
     Position: '职位',

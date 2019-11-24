@@ -49,7 +49,9 @@ module.exports = {
     EndTime: 'End Time',
     InputText: 'Please Enter Search Keywords',
     Confirm: 'Confirm',
-    Cancel: 'Cancel'
+    Cancel: 'Cancel',
+    HistoryTitle: 'History',
+    Clean: 'Empty'
   },
   Mine: {
     Position: 'Position',
