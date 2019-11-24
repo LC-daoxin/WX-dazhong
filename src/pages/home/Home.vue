@@ -202,7 +202,6 @@ export default {
         i{
           font-size: .34rem;
           padding-right: .1rem;
-          padding-bottom: .04rem;
         }
       }
       &-more{

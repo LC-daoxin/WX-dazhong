@@ -2,18 +2,18 @@
   <div class="Search">
     <form action="/">
       <van-search
-        v-model="search"
+        v-model.trim="search"
         :placeholder="$t('Search.InputText')"
         show-action
       >
-        <div slot="action">{{$t('Home.Search')}}</div>
+        <div slot="action" @click="handleSearch">{{$t('Home.Search')}}</div>
       </van-search>
     </form>
     <van-dropdown-menu>
       <van-dropdown-item title="" v-model="value" :options="option" />
-      <van-dropdown-item :title="SelectTimeStart" v-model="value" ref="time1">
+      <van-dropdown-item :title="SelectTimeStart" ref="time1">
         <van-datetime-picker
-          v-model="currentDate"
+          v-model="currentStartDate"
           type="date"
           @confirm="onConfirmTime1"
           @cancel="onCancelTime1"
@@ -23,7 +23,7 @@
       </van-dropdown-item>
       <van-dropdown-item :title="SelectTimeEnd" ref="time2">
         <van-datetime-picker
-          v-model="currentDate"
+          v-model="currentEndDate"
           type="date"
           @confirm="onConfirmTime2"
           @cancel="onCancelTime2"
@@ -32,26 +32,67 @@
         />
       </van-dropdown-item>
     </van-dropdown-menu>
+    <div class="history">
+      <div class="history-container">
+        <div class="history-head">
+          <div class="history-head-title">
+            <i class="iconfont">&#xeb9a;</i>历史记录
+          </div>
+        </div>
+        <ul class="history-items">
+          <li v-for="(item, index) of HistoryList" :key="item">
+              <van-tag
+                class="tag"
+                v-if="Tagshow[index]"
+                closeable
+                size="large"
+                plain
+                @click="handleHistory"
+                @close="close(index)"
+              >
+                <span class="tagSpan">{{ item }}</span>
+              </van-tag>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import { Search, DropdownMenu, DropdownItem, DatetimePicker } from 'vant'
+import { Search, DropdownMenu, DropdownItem, DatetimePicker, Tag, Toast } from 'vant'
 export default {
   name: 'search',
   components: {
     [Search.name]: Search,
     [DropdownMenu.name]: DropdownMenu,
     [DropdownItem.name]: DropdownItem,
-    [DatetimePicker.name]: DatetimePicker
+    [DatetimePicker.name]: DatetimePicker,
+    [Tag.name]: Tag,
+    [Toast.name]: Toast
   },
   data () {
     return {
-      currentDate: new Date(),
+      currentStartDate: new Date(),
+      currentEndDate: new Date(),
       SelectTimeStart: this.$t('Search.StartTime'),
       SelectTimeEnd: this.$t('Search.EndTime'),
       search: '',
       value: '',
+      Tagshow: {
+        0: true,
+        1: true,
+        2: true,
+        3: true,
+        4: true,
+        5: true,
+        6: true,
+        7: true,
+        8: true,
+        9: true
+      },
+      InitialHistory: ['Ge.chunfeng CF-01', 'CF-3214E3223', 'IT-03', 'CF-15', 'IT-2350', 'PMAO-01', 'IT-21250', '大众一汽大连厂', 'CC长春_ITCC长春信息技术'],
+      HistoryList: [],
       option: [
         { text: this.$t('Home.ProcessName'), value: '' },
         { text: 'CF-02 Travel Expenses - Borrowing Request/差旅费相关-员工借款申请', value: 0 },
@@ -79,22 +120,84 @@ export default {
       ]
     }
   },
+  mounted () {
+    if (localStorage.getItem('First') == null) {
+      localStorage.setItem('First', 'Landed') // 如果第一次登录模拟添加搜索历史s
+      this.SaveSearch(this.InitialHistory)
+      this.HistoryList = this.InitialHistory
+    } else {
+      this.HistoryList = this.GetSearch()
+    }
+  },
   methods: {
-    onConfirmTime1 (value) {
+    onConfirmTime1 (value) { // 起始时间 确认
       this.$refs.time1.toggle()
       this.SelectTimeStart = `${value.getFullYear()}-${value.getMonth()}-${value.getDate()}`
     },
-    onCancelTime1 (value) {
+    onCancelTime1 (value) { // 起始时间 取消
       this.$refs.time1.toggle()
       this.SelectTimeStart = this.$t('Search.StartTime')
     },
-    onConfirmTime2 (value) {
+    onConfirmTime2 (value) { // 结束时间 确认
       this.$refs.time2.toggle()
       this.SelectTimeEnd = `${value.getFullYear()}-${value.getMonth()}-${value.getDate()}`
     },
-    onCancelTime2 (value) {
+    onCancelTime2 (value) { // 结束时间 取消
       this.$refs.time2.toggle()
       this.SelectTimeEnd = this.$t('Search.EndTime')
+    },
+    close (type) { // 删除某个搜索历史
+      // this.Tagshow[type] = false 全部显示 通过localStorage 控制
+      this.HistoryList.splice(type, 1)
+      this.SaveSearch(this.HistoryList)
+    },
+    handleHistory (Event) {
+      this.search = Event.currentTarget.getElementsByTagName('span')[0].innerText
+    },
+    handleSearch () {
+      if (this.search !== '') { // 先判断输入的是不是空格
+        if (localStorage.getItem('SearchWord') == null) {
+          this.SaveSearch(this.search)
+          this.HistoryList.push(this.GetSearch())
+        } else {
+          let HistoryArr = this.GetSearch()
+          HistoryArr.unshift(this.search) // 最新的搜索记录添加到头部
+          let NewHistoryArr = this.DeDuplication(HistoryArr)
+          let Num = NewHistoryArr.length
+          if (Num < 11) {
+            this.SaveSearch(NewHistoryArr)
+          } else {
+            this.ten(NewHistoryArr)
+          }
+          this.HistoryList = this.GetSearch()
+        }
+      }
+    },
+    DeDuplication (Arr) { // 去重 搜索记录
+      let res = []
+      let json = {}
+      for (let i = 0; i < Arr.length; i++) {
+        if (!json[Arr[i]]) {
+          res.push(Arr[i])
+          json[Arr[i]] = 1
+        }
+      }
+      return res
+    },
+    ten (arr) { // 优化历史记录保存不超过10个
+      let num = arr.length - 1
+      let tenArr = []
+      for (let i = 0; i < num; i++) {
+        tenArr[i] = arr[i]
+      }
+      localStorage.removeItem('SearchWord')
+      this.SaveSearch(tenArr)
+    },
+    SaveSearch (Arr) { // 保存搜索历史记录
+      localStorage.setItem('SearchWord', Arr)
+    },
+    GetSearch () { // 获取localStorage中搜索历史记录 并转换为数组
+      return localStorage.getItem('SearchWord').split(',')
     }
   }
 }
@@ -102,4 +205,28 @@ export default {
 
 <style lang="scss" scoped>
   @import '~@styles/main.scss';
+  .Search{
+    .history{
+      padding: .2rem;
+      .history-items {
+        margin-top: .14rem;
+        li {
+          position: relative;
+          display: inline-block;
+          max-width: 99%;
+          margin-top: .12rem;
+          .tag{
+            margin-right: .2rem;
+            padding: .1rem .12rem;
+            font-size: .26rem;
+            height: .36rem;
+            line-height: .36rem;
+            .tagSpan{
+              padding-right: .02rem;
+            }
+          }
+        }
+      }
+    }
+  }
 </style>

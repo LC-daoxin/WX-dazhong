@@ -19,13 +19,13 @@
     >
       <van-tab>
         <div slot="title" class="tab">
-          <i class="iconfont">&#xeb93;</i> My Pending
+          <i class="iconfont">&#xeb93;</i> {{$t('Home.MyPending')}}
         </div>
         <list-content ListType="MyPending"></list-content>
       </van-tab>
       <van-tab>
         <div slot="title" class="tab">
-          <i class="iconfont">&#xeb9a;</i> BM Pending
+          <i class="iconfont">&#xeb9a;</i> {{$t('Home.BMPending')}}
         </div>
         <list-content ListType="BMPending"></list-content>
       </van-tab>
@@ -40,19 +40,19 @@
     >
       <van-tab>
         <div slot="title" class="tab">
-          <i class="iconfont">&#xeb95;</i> My Created
+          <i class="iconfont">&#xeb95;</i> {{$t('Home.MyCreated')}}
         </div>
         <list-content ListType="MyCreated"></list-content>
       </van-tab>
       <van-tab>
         <div slot="title" class="tab">
-          <i class="iconfont">&#xeb97;</i> My Request
+          <i class="iconfont">&#xeb97;</i> {{$t('Home.MyRequest')}}
         </div>
         <list-content ListType="MyRequest"></list-content>
       </van-tab>
       <van-tab>
         <div slot="title" class="tab">
-          <i class="iconfont">&#xeb99;</i> My Approve
+          <i class="iconfont">&#xeb99;</i> {{$t('Home.MyApprove')}}
         </div>
         <list-content ListType="MyApprove"></list-content>
       </van-tab>

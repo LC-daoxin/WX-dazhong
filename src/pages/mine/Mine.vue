@@ -80,7 +80,6 @@ export default {
       this.showLang = true
     },
     onLangSelect (item, index) {
-      console.log(index)
       if (index === 1) {
         this.$i18n.locale = 'en-US'
         localStorage.setItem('lang', 'en-US')
