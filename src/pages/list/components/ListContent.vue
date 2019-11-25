@@ -168,8 +168,29 @@ export default {
         time: '2019-11-12 07:59:07',
         user: 'Ge, Chunfeng/葛春峰'
       }]; break
-      case 'MyRequest': break
-      case 'MyApprove': break
+      case 'MyRequest': this.list = [{
+        id: '0001',
+        name: 'CF-04 Employee Travel Expense Claim -Overseas/员工国际出差费用报销',
+        no: 'CF-2019-001321',
+        status: 'Error',
+        time: '2019-11-12 07:59:07',
+        user: 'Wu, Wenhui/吴文惠'
+      }, {
+        id: '0002',
+        name: 'IT-01 Workplace/办公资产申请',
+        no: 'IT-2019-000092',
+        status: 'Active',
+        time: '2019-11-12 07:59:07',
+        user: 'Ge, Chunfeng/葛春峰'
+      }, {
+        id: '0003',
+        name: 'CH-12 Book Purchasing',
+        no: 'CH-2019-002523',
+        status: 'Active',
+        time: '2019-11-12 07:59:07',
+        user: 'Ge, Chunfeng/葛春峰'
+      }]; break
+      case 'MyApprove': this.list = []; break
     }
   },
   methods: {
