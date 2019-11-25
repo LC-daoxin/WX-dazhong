@@ -5,6 +5,7 @@
         v-model.trim="search"
         :placeholder="$t('Search.InputText')"
         show-action
+        @search="onSearch"
       >
         <div slot="action" @click="handleSearch">{{$t('Home.Search')}}</div>
       </van-search>
@@ -38,7 +39,7 @@
           <div class="history-head-title">
             <i class="iconfont">&#xe6c7;</i>{{$t('Search.HistoryTitle')}}
           </div>
-          <div class="history-head-Clean" @click="CleanHistory">
+          <div class="history-head-Clean" @click="cleanHistory">
             {{$t('Search.Clean')}} <i class="iconfont">&#xe667;</i>
           </div>
         </div>
@@ -154,14 +155,23 @@ export default {
       this.HistoryList.splice(type, 1)
       this.SaveSearch(this.HistoryList)
     },
-    CleanHistory () {
+    cleanHistory () {
       this.HistoryList = []
       localStorage.removeItem('SearchWord')
     },
     handleHistory (Event) { // 点击历史搜索显示到输入框里
-      this.search = Event.currentTarget.getElementsByTagName('span')[0].innerText
+      let Text = Event.currentTarget.getElementsByTagName('span')[0].innerText
+      if (this.HistoryList.indexOf(Text) > -1) { // 点击Close关闭时会触发 handleHistory
+        this.search = Text
+      }
     },
-    handleSearch () {
+    onSearch () { // 键盘搜索
+      this.recordHistory()
+    },
+    handleSearch () { // 手动点击搜索
+      this.recordHistory()
+    },
+    recordHistory () {
       if (this.search !== '') { // 先判断输入的是不是空格
         if (localStorage.getItem('SearchWord') == null) {
           this.SaveSearch(this.search)
@@ -169,7 +179,7 @@ export default {
         } else {
           let HistoryArr = this.GetSearch()
           HistoryArr.unshift(this.search) // 最新的搜索记录添加到头部
-          let NewHistoryArr = this.DeDuplication(HistoryArr)
+          let NewHistoryArr = this.deDuplication(HistoryArr)
           let Num = NewHistoryArr.length
           if (Num < 11) {
             this.SaveSearch(NewHistoryArr)
@@ -180,7 +190,7 @@ export default {
         }
       }
     },
-    DeDuplication (Arr) { // 去重 搜索记录
+    deDuplication (Arr) { // 去重 搜索记录
       let res = []
       let json = {}
       for (let i = 0; i < Arr.length; i++) {

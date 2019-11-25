@@ -10,7 +10,7 @@
     </van-nav-bar>
     <van-row class="home-box">
       <van-col span="24">
-        <div class="home-box-title"><i class="iconfont">&#xeb93;</i>{{$t('Home.Pending')}}</div>
+        <div class="home-box-title"><i class="iconfont">&#xe62b;</i>{{$t('Home.Pending')}}</div>
       </van-col>
       <van-col span="24">
         <van-grid :column-num="4" :border="false">
@@ -36,7 +36,7 @@
     </van-row>
     <van-row class="home-box">
       <van-col span="24">
-        <div class="home-box-title"><i class="iconfont">&#xeb93;</i>{{$t('Home.Query')}}</div>
+        <div class="home-box-title"><i class="iconfont">&#xe7cf;</i>{{$t('Home.Query')}}</div>
       </van-col>
       <van-col span="24">
         <van-grid :column-num="4" :border="false">
@@ -67,7 +67,7 @@
     </van-row>
     <van-row safe-area-inset-bottom class="home-box home-box-last">
       <van-col span="24">
-        <div class="home-box-title"><i class="iconfont">&#xeb93;</i>{{$t('Home.Matters')}}</div>
+        <div class="home-box-title"><i class="iconfont">&#xe6e9;</i>{{$t('Home.Matters')}}</div>
       </van-col>
       <van-col span="24" v-for="item of listdata" :key="item.id">
         <list-item :item="item"></list-item>

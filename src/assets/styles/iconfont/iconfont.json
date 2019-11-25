@@ -13,6 +13,13 @@
       "unicode_decimal": 58925
     },
     {
+      "icon_id": "343825",
+      "name": "untitled52",
+      "font_class": "untitled52",
+      "unicode": "e7cf",
+      "unicode_decimal": 59343
+    },
+    {
       "icon_id": "423809",
       "name": "历史轨迹",
       "font_class": "lishiguiji",
@@ -53,6 +60,13 @@
       "font_class": "weibiaoti9",
       "unicode": "e60f",
       "unicode_decimal": 58895
+    },
+    {
+      "icon_id": "1114662",
+      "name": "标题图标",
+      "font_class": "biaotitubiao",
+      "unicode": "e62b",
+      "unicode_decimal": 58923
     },
     {
       "icon_id": "1117947",
@@ -102,6 +116,13 @@
       "font_class": "tianjia",
       "unicode": "e61d",
       "unicode_decimal": 58909
+    },
+    {
+      "icon_id": "2204422",
+      "name": "job title",
+      "font_class": "jobtitle",
+      "unicode": "e6e9",
+      "unicode_decimal": 59113
     },
     {
       "icon_id": "2742625",

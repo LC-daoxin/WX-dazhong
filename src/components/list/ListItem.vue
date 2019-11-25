@@ -34,6 +34,8 @@ export default {
   },
   methods: {
     go () {
+      let top = Math.floor(document.body.scrollTop || document.documentElement.scrollTop || window.pageXOffset) // 记录当前跳转时 滚动条的高度
+      localStorage.setItem('Height', top)
       let CurrentPath = this.$route.path
       this.$router.replace({path: '/Flow-demo', query: { History: CurrentPath }})
     }

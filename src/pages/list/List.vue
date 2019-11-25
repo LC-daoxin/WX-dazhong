@@ -16,6 +16,7 @@
       title-active-color="#2196F3"
       swipeable
       v-if="ListItem === 'Pending'"
+      @change="changePending"
     >
       <van-tab>
         <div slot="title" class="tab">
@@ -37,6 +38,7 @@
       title-active-color="#2196F3"
       swipeable
       v-else-if="ListItem === 'Query'"
+      @change="changeQuery"
     >
       <van-tab>
         <div slot="title" class="tab">
@@ -77,6 +79,24 @@ export default {
       value: '',
       tabactive: parseInt(this.$route.params.tabactive),
       ListItem: this.$route.params.ListItem
+    }
+  },
+  methods: {
+    changePending (name) {
+      if (name === 0) {
+        this.$router.replace({path: '/List/Pending/0'})
+      } else if (name === 1) {
+        this.$router.replace({path: '/List/Pending/1'})
+      }
+    },
+    changeQuery (name) {
+      if (name === 0) {
+        this.$router.replace({path: '/List/Query/0'})
+      } else if (name === 1) {
+        this.$router.replace({path: '/List/Query/1'})
+      } else if (name === 2) {
+        this.$router.replace({path: '/List/Query/2'})
+      }
     }
   }
 }
