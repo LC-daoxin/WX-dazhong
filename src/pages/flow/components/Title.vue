@@ -1,7 +1,7 @@
 <template>
   <div class="title">
-    <h2 class="title-en">Personal Cost(RMB) of FSE Request</h2>
-    <h2 class="title-zh">外籍员工本地工资付款申请</h2>
+    <h2 class="title-en">Domestic Travel Request</h2>
+    <h2 class="title-zh">国内出差申请</h2>
   </div>
 </template>
 

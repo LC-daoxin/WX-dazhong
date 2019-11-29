@@ -64,7 +64,7 @@ export default {
         id: '0004',
         name: 'CF-04 Employee Travel Expense Claim -Overseas/员工国际出差费用报销',
         no: 'CF-2019-001321',
-        status: 'Error',
+        status: 'Active',
         time: '2019-11-12 07:59:07',
         user: 'Wu, Wenhui/吴文惠'
       }, {
@@ -99,7 +99,7 @@ export default {
         id: '0009',
         name: 'CF-04 Employee Travel Expense Claim -Overseas/员工国际出差费用报销',
         no: 'CF-2019-001321',
-        status: 'Error',
+        status: 'Active',
         time: '2019-11-12 07:59:07',
         user: 'Wu, Wenhui/吴文惠'
       }, {
@@ -150,7 +150,7 @@ export default {
         id: '0004',
         name: 'CF-04 Employee Travel Expense Claim -Overseas/员工国际出差费用报销',
         no: 'CF-2019-001321',
-        status: 'Error',
+        status: 'Active',
         time: '2019-11-12 07:59:07',
         user: 'Wu, Wenhui/吴文惠'
       }, {
@@ -172,7 +172,7 @@ export default {
         id: '0001',
         name: 'CF-04 Employee Travel Expense Claim -Overseas/员工国际出差费用报销',
         no: 'CF-2019-001321',
-        status: 'Error',
+        status: 'Active',
         time: '2019-11-12 07:59:07',
         user: 'Wu, Wenhui/吴文惠'
       }, {
