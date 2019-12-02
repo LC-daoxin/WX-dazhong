@@ -191,17 +191,17 @@ export default {
         }
       }
     },
-    // deDuplication (Arr) { // 去重 搜索记录
-    //   let res = []
-    //   let json = {}
-    //   for (let i = 0; i < Arr.length; i++) {
-    //     if (!json[Arr[i]]) {
-    //       res.push(Arr[i])
-    //       json[Arr[i]] = 1
-    //     }
-    //   }
-    //   return res
-    // },
+    deDuplication (Arr) { // 去重 搜索记录
+      let res = []
+      let json = {}
+      for (let i = 0; i < Arr.length; i++) {
+        if (!json[Arr[i]]) {
+          res.push(Arr[i])
+          json[Arr[i]] = 1
+        }
+      }
+      return res
+    },
     ten (arr) { // 优化历史记录保存不超过10个
       let num = arr.length - 1
       let tenArr = []
