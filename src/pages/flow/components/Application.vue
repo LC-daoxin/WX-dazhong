@@ -16,6 +16,37 @@
               </div>
             </template>
           </collapse-item>
+          <collapse-item :CollapseItemName="child.name" v-else-if="child.type === 'table'">
+            <template #collapseItem>
+              <div class="basic-body">
+                <el-table
+                  v-if="child.data"
+                  :data="child.data"
+                  max-height="400"
+                  size="mini"
+                  border
+                  style="width: 100%">
+                  <el-table-column
+                    prop="date"
+                    label="日期"
+                    width="100">
+                  </el-table-column>
+                  <el-table-column
+                    prop="name"
+                    label="姓名"
+                    width="90">
+                  </el-table-column>
+                  <el-table-column
+                    prop="address"
+                    label="地址">
+                  </el-table-column>
+                </el-table>
+                <div v-else v class="NoInfo">
+                  <div class="NoContent">No items to display.</div>
+                </div>
+              </div>
+            </template>
+          </collapse-item>
         </div>
       </template>
       <template #noInfo v-else>

@@ -391,6 +391,13 @@
       "unicode_decimal": 58962
     },
     {
+      "icon_id": "8897318",
+      "name": "更多",
+      "font_class": "gengduo1",
+      "unicode": "e671",
+      "unicode_decimal": 58993
+    },
+    {
       "icon_id": "10455014",
       "name": "待处理合同",
       "font_class": "daichulihetong",

@@ -78,13 +78,13 @@ export default {
         position: absolute;
         top: -2rem;
         left: .1rem;
-        .login-title-h1{
+        &-h1{
           font-size: 1rem;
           font-weight: 900;
           margin-bottom: .2rem;
           opacity: .06;
         }
-        .login-title-h2{
+        &-h2{
           font-size: .6rem;
           padding-left: .1rem;
           opacity: .12;

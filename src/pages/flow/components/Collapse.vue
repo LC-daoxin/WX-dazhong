@@ -13,7 +13,11 @@
           <slot name="noInfo"></slot>
         </div>
       </div>
-      <a href="javascript:void(0);" class="collapse-footer"  @click="handleOpenClick"><i class="iconfont">&#xe6e1;</i></a>
+      <a href="javascript:void(0);" class="collapse-footer" v-if="type === 'Detail'"  @click="handleOpenClick"><i class="iconfont">&#xe6e1;</i></a>
+      <a href="javascript:void(0);" class="collapse-footer" v-if="type === 'Basic'" @click="handleBasicClick">
+        <i class="iconfont bold" v-if="showType">&#xe671;</i>
+        <i class="iconfont" v-else>&#xe6e1;</i>
+      </a>
     </div>
   </div>
 </template>
@@ -23,11 +27,16 @@ export default {
   name: 'Collapse',
   props: {
     collapseName: String,
-    show: Boolean
+    show: Boolean,
+    type: {
+      type: String,
+      default: 'Detail'
+    }
   },
   data () {
     return {
-      itemShowType: this.show
+      itemShowType: this.show,
+      showType: true
     }
   },
   mounted () {
@@ -51,6 +60,23 @@ export default {
         }, 300)
       }
       this.itemShowType = !this.itemShowType
+    },
+    handleBasicClick () {
+      let body = this.$refs.collapsebody
+      let height = body.childNodes[0].offsetHeight
+      if (!this.showType) {
+        body.style.height = height + 'px'
+        setTimeout(() => {
+          body.style.height = '71px'
+        }, 1)
+      } else {
+        body.style.height = height + 'px'
+        setTimeout(() => {
+          body.style.height = body.scrollHeight + 'px'
+        }, 50)
+      }
+      this.showType = !this.showType
+      this.$emit('change')
     }
   }
 }
@@ -113,6 +139,9 @@ export default {
         text-align: center;
         i{
           color: $bgColor;
+        }
+        .bold{
+          font-weight: bolder;
         }
       }
     }

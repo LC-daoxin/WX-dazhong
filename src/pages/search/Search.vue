@@ -180,7 +180,7 @@ export default {
           let HistoryArr = this.GetSearch()
           HistoryArr.unshift(this.search) // 最新的搜索记录添加到头部
           // let NewHistoryArr = this.deDuplication(HistoryArr)
-          let NewHistoryArr = [...new Set(HistoryArr)] // 使用Set 去重数组
+          let NewHistoryArr = [...new Set(HistoryArr)] // 去重
           let Num = NewHistoryArr.length
           if (Num < 11) {
             this.SaveSearch(NewHistoryArr)
@@ -190,17 +190,6 @@ export default {
           this.HistoryList = this.GetSearch()
         }
       }
-    },
-    deDuplication (Arr) { // 去重 搜索记录
-      let res = []
-      let json = {}
-      for (let i = 0; i < Arr.length; i++) {
-        if (!json[Arr[i]]) {
-          res.push(Arr[i])
-          json[Arr[i]] = 1
-        }
-      }
-      return res
     },
     ten (arr) { // 优化历史记录保存不超过10个
       let num = arr.length - 1

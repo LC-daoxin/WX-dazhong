@@ -7,6 +7,7 @@ import '@vant/touch-emulator' // 在桌面端上模拟移动端 touch 事件
 import VueI18n from 'vue-i18n' // 国际化
 import { Toast } from 'vant' // 全局设置
 import store from './store'
+import { Table, TableColumn } from 'element-ui' // 按需引入element-ui
 
 import '@styles/reset.css'
 import '@styles/border.css'
@@ -26,8 +27,11 @@ const i18n = new VueI18n({
   }
 })
 
-Vue.use(Toast)
+Vue.use(Toast) // vant Toast
 Toast.setDefaultOptions({ duration: 700 }) // 全局轻提示设置
+
+Vue.use(Table) // element-ui Table
+Vue.use(TableColumn)
 
 router.beforeEach((to, from, next) => {
   /* 路由发生变化修改页面title */
