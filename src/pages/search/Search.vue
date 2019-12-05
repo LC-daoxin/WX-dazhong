@@ -5,7 +5,7 @@
         v-model.trim="search"
         :placeholder="$t('Search.InputText')"
         show-action
-        @search="onSearch"
+        @search="handleSearch"
       >
         <div slot="action" @click="handleSearch">{{$t('Home.Search')}}</div>
       </van-search>
@@ -165,45 +165,30 @@ export default {
         this.search = Text
       }
     },
-    onSearch () { // 键盘搜索
-      this.recordHistory()
-    },
-    handleSearch () { // 手动点击搜索
+    handleSearch () { // 点击搜索
       this.recordHistory()
     },
     recordHistory () {
       if (this.search !== '') { // 先判断输入的是不是空格
         if (localStorage.getItem('SearchWord') == null) {
-          this.SaveSearch(this.search)
-          this.HistoryList = this.GetSearch()
+          this.saveSearch(this.search)
+          this.HistoryList = this.getSearch()
         } else {
-          let HistoryArr = this.GetSearch()
+          let HistoryArr = this.getSearch()
           HistoryArr.unshift(this.search) // 最新的搜索记录添加到头部
-          // let NewHistoryArr = this.deDuplication(HistoryArr)
           let NewHistoryArr = [...new Set(HistoryArr)] // 去重
-          let Num = NewHistoryArr.length
-          if (Num < 11) {
-            this.SaveSearch(NewHistoryArr)
-          } else {
-            this.ten(NewHistoryArr)
-          }
-          this.HistoryList = this.GetSearch()
+          let TenArr = NewHistoryArr.filter((item, index, array) => {
+            return index < 10
+          })
+          this.saveSearch(TenArr)
+          this.HistoryList = this.getSearch()
         }
       }
     },
-    ten (arr) { // 优化历史记录保存不超过10个
-      let num = arr.length - 1
-      let tenArr = []
-      for (let i = 0; i < num; i++) {
-        tenArr[i] = arr[i]
-      }
-      localStorage.removeItem('SearchWord')
-      this.SaveSearch(tenArr)
-    },
-    SaveSearch (Arr) { // 保存搜索历史记录
+    saveSearch (Arr) { // 保存搜索历史记录
       localStorage.setItem('SearchWord', Arr)
     },
-    GetSearch () { // 获取localStorage中搜索历史记录 并转换为数组
+    getSearch () { // 获取localStorage中搜索历史记录 并转换为数组
       return localStorage.getItem('SearchWord').split(',')
     }
   }
