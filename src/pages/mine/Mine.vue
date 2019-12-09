@@ -104,7 +104,7 @@ export default {
     },
     onExitSelect (item, index) {
       switch (index) {
-        case 0: this.$router.replace({path: '/'})
+        case 0: this.$router.replace({path: '/Login'})
       }
       this.showExit = false
     },

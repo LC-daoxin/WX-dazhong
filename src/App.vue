@@ -5,12 +5,17 @@
         <router-view/>
       </transition>
     </keep-alive>
+    <tab-bottom></tab-bottom>
   </div>
 </template>
 
 <script>
+import TabBottom from '@/components/Tabbar/Tabbottom'
 export default {
   name: 'App',
+  components: {
+    TabBottom
+  },
   data () {
     return {
       transitionName: '' // 默认动态路由变化为空

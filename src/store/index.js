@@ -5,11 +5,15 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    CurrentPage: 0
+    CurrentPage: 0,
+    tokenID: undefined
   },
   mutations: {
     changePage (state, Page) {
       state.CurrentPage = Page
+    },
+    GettokenID (state, ID) {
+      state.tokenID = ID
     }
   }
 })

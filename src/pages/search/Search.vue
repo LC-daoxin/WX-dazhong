@@ -130,7 +130,7 @@ export default {
       this.SaveSearch(this.InitialHistory)
       this.HistoryList = this.InitialHistory
     } else {
-      this.HistoryList = this.GetSearch()
+      this.HistoryList = this.getSearch()
     }
   },
   methods: {
@@ -153,7 +153,7 @@ export default {
     close (type) { // 删除某个搜索历史
       // this.Tagshow[type] = false 全部显示 通过localStorage 控制
       this.HistoryList.splice(type, 1)
-      this.SaveSearch(this.HistoryList)
+      this.saveSearch(this.HistoryList)
     },
     cleanHistory () {
       this.HistoryList = []

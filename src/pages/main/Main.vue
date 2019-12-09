@@ -1,17 +1,17 @@
 <template>
   <div class="main">
     <router-view/>
-    <tab-bottom></tab-bottom>
+    <!--<tab-bottom></tab-bottom>-->
   </div>
 </template>
 
 <script>
-import TabBottom from '@/components/Tabbar/Tabbottom'
+// import TabBottom from '@/components/Tabbar/Tabbottom'
 export default {
   name: 'Main',
-  components: {
-    TabBottom
-  },
+  // components: {
+  //   TabBottom
+  // },
   data () {
     return {
       lock: true,

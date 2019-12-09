@@ -20,7 +20,7 @@
         </div>
         <div class="login-forget">{{$t('Login.Forget')}}.?</div>
         <router-link to="/Home" replace>
-          <button class="login-row login-button">{{$t('Login.Login')}}</button>
+          <button class="login-row login-button" @click="login">{{$t('Login.Login')}}</button>
         </router-link>
       </div>
     </div>
@@ -30,6 +30,7 @@
 
 <script>
 import { Tabbar, TabbarItem } from 'vant'
+import { axios } from '@/global'
 export default {
   components: {
     [Tabbar.name]: Tabbar,
@@ -39,6 +40,16 @@ export default {
   data () {
     return {
       active: 0
+    }
+  },
+  methods: {
+    login () {
+      this.$store.commit('GettokenID', '0001')
+      axios.get('/api/Login.json')
+        .then((res) => {
+          let data = res.data.data
+          this.list = data
+        })
     }
   }
 }

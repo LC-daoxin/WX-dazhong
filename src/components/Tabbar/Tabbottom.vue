@@ -1,6 +1,7 @@
 <template>
   <div>
     <van-tabbar
+      v-if="!this.$route.meta.tabHide"
       class="tabbar"
       v-model="active"
       active-color="#2196F3"

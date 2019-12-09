@@ -8,6 +8,7 @@
     @load="onLoad"
   >
     <van-cell
+      v-if="list"
       v-for="item in list"
       :key="item.id"
       :border="false"
@@ -20,6 +21,7 @@
 <script>
 import { List, Cell } from 'vant'
 import ListItem from '@/components/list/ListItem'
+import axios from 'axios'
 export default {
   name: 'ListContent',
   props: {
@@ -32,84 +34,14 @@ export default {
   },
   data () {
     return {
-      list: [],
+      list: undefined,
       loading: false,
       finished: false
     }
   },
   mounted () {
     switch (this.ListType) {
-      case 'MyPending': this.list = [{
-        id: '0001',
-        name: 'CH-12 Book Purchasing',
-        no: 'CH-2019-002523',
-        status: 'Active',
-        time: '2019-11-12 07:59:07',
-        user: 'Ge, Chunfeng/葛春峰'
-      }, {
-        id: '0002',
-        name: 'CF-12 Administrative Expenses - Employee Expense Claim/办公费相关-员工费用报销',
-        no: 'CF-2019-001321',
-        status: 'Completed',
-        time: '2019-10-16 11:24:19',
-        user: 'Wu, Wenhui/吴文惠'
-      }, {
-        id: '0003',
-        name: 'CF-17 Service and Materials Acceptance/服务物资验收',
-        no: 'IT-2019-000092',
-        status: 'Active',
-        time: '2019-11-12 07:59:07',
-        user: 'Ge, Chunfeng/葛春峰'
-      }, {
-        id: '0004',
-        name: 'CF-04 Employee Travel Expense Claim -Overseas/员工国际出差费用报销',
-        no: 'CF-2019-001321',
-        status: 'Active',
-        time: '2019-11-12 07:59:07',
-        user: 'Wu, Wenhui/吴文惠'
-      }, {
-        id: '0005',
-        name: 'IT-01 Workplace/办公资产申请',
-        no: 'IT-2019-000092',
-        status: 'Active',
-        time: '2019-11-12 07:59:07',
-        user: 'Ge, Chunfeng/葛春峰'
-      }, {
-        id: '0006',
-        name: 'CH-12 Book Purchasing',
-        no: 'CH-2019-002523',
-        status: 'Active',
-        time: '2019-11-12 07:59:07',
-        user: 'Ge, Chunfeng/葛春峰'
-      }, {
-        id: '0007',
-        name: 'CF-12 Administrative Expenses - Employee Expense Claim/办公费相关-员工费用报销',
-        no: 'CF-2019-001321',
-        status: 'Completed',
-        time: '2019-10-16 11:24:19',
-        user: 'Wu, Wenhui/吴文惠'
-      }, {
-        id: '0008',
-        name: 'CF-17 Service and Materials Acceptance/服务物资验收',
-        no: 'IT-2019-000092',
-        status: 'Active',
-        time: '2019-11-12 07:59:07',
-        user: 'Ge, Chunfeng/葛春峰'
-      }, {
-        id: '0009',
-        name: 'CF-04 Employee Travel Expense Claim -Overseas/员工国际出差费用报销',
-        no: 'CF-2019-001321',
-        status: 'Active',
-        time: '2019-11-12 07:59:07',
-        user: 'Wu, Wenhui/吴文惠'
-      }, {
-        id: '0010',
-        name: 'IT-01 Workplace/办公资产申请',
-        no: 'IT-2019-000092',
-        status: 'Active',
-        time: '2019-11-12 07:59:07',
-        user: 'Ge, Chunfeng/葛春峰'
-      }]; break
+      case 'MyPending': this.getListInfo(); break
       case 'BMPending': this.list = [{
         id: '0001',
         name: 'CH-12 Book Purchasing',
@@ -203,10 +135,17 @@ export default {
         // 加载状态结束
         this.loading = false
         // 数据全部加载完成
-        if (this.list.length >= 0) {
+        if (this.list && this.list.length >= 0) {
           this.finished = true
         }
       }, 1000)
+    },
+    getListInfo () {
+      axios.get('/api/List.json')
+        .then((res) => {
+          let data = res.data.data
+          this.list = data
+        })
     }
   }
 }
