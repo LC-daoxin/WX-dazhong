@@ -17,7 +17,6 @@ service.interceptors.request.use(config => {
     duration: 0
   })
   const paiToken = localStorage.getItem('PAI-token')
-  console.log(config)
   if (paiToken) {
   }
   return config
@@ -29,7 +28,6 @@ service.interceptors.request.use(config => {
 })
 // 响应处理
 service.interceptors.response.use(res => {
-  console.log(res)
   Toast.clear()
   return res
 }, error => {
