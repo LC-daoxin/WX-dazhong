@@ -36,7 +36,8 @@ export default {
   data () {
     return {
       itemShowType: this.show,
-      showType: true
+      showType: true,
+      timer: null
     }
   },
   mounted () {
@@ -50,14 +51,21 @@ export default {
       let height = body.childNodes[0].offsetHeight
       if (this.itemShowType) {
         body.style.height = height + 'px'
-        setTimeout(() => {
+        if (this.timer) {
+          clearTimeout(this.timer)
+        }
+        this.timer = setTimeout(() => {
           body.style.height = '0px'
         }, 1)
       } else {
         body.style.height = height + 'px'
-        setTimeout(() => {
+        let SpeedTime = height / 800 * 1000
+        if (this.timer) {
+          clearTimeout(this.timer)
+        }
+        this.timer = setTimeout(() => {
           body.style.height = 'auto'
-        }, 300)
+        }, SpeedTime)
       }
       this.itemShowType = !this.itemShowType
     },

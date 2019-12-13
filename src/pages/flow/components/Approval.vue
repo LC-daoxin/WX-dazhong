@@ -65,7 +65,7 @@ export default {
 <style lang="scss" scoped>
   @import '~@styles/main.scss';
   .Approval-body{
-    margin: .3rem 0 .3rem;
+    padding: .3rem 0 .3rem;
     .Approval-history{
       ul{
         border-left: solid .02rem $ApprovalColor;

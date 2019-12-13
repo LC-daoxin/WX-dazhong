@@ -63,7 +63,7 @@ export default {
 <style lang="scss" scoped>
   @import '~@styles/main.scss';
   .attachment{
-    margin: .4rem 0 .3rem;
+    padding: .4rem 0 .3rem;
     .attachment-body{
       padding: .1rem .3rem 0;
       .text-danger{
