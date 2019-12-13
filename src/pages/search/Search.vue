@@ -126,8 +126,8 @@ export default {
   },
   mounted () {
     if (localStorage.getItem('First') == null) {
-      localStorage.setItem('First', 'Landed') // 如果第一次登录模拟添加搜索历史s
-      this.SaveSearch(this.InitialHistory)
+      localStorage.setItem('First', 'Landed') // 如果第一次登录模拟添加搜索历史
+      this.saveSearch(this.InitialHistory)
       this.HistoryList = this.InitialHistory
     } else {
       this.HistoryList = this.getSearch()
@@ -189,7 +189,8 @@ export default {
       localStorage.setItem('SearchWord', Arr)
     },
     getSearch () { // 获取localStorage中搜索历史记录 并转换为数组
-      return localStorage.getItem('SearchWord').split(',')
+      let SearchWord = localStorage.getItem('SearchWord')
+      return SearchWord ? SearchWord.split(',') : []
     }
   }
 }

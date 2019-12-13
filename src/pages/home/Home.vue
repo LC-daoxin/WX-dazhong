@@ -5,7 +5,7 @@
       title="VWED APON"
     >
       <div class="logo" slot="left">
-        <img src="@/assets/styles/img/bglog.png" height="53" width="104"/>
+        <img src="@/assets/logo.png" height="53" width="104"/>
       </div>
     </van-nav-bar>
     <van-row class="home-box">
@@ -175,7 +175,7 @@ export default {
         width: 1.2rem;
         opacity: .9;
         img{
-          margin-top: -.14rem;
+          margin-top: -.06rem;
           width: auto;
           height: auto;
           max-width: 100%;
