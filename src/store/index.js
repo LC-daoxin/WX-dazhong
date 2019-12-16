@@ -6,7 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     CurrentPage: 0,
-    tokenID: undefined
+    tokenID: window.localStorage.getItem('tokenID')
   },
   mutations: {
     changePage (state, Page) {

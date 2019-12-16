@@ -19,9 +19,7 @@
           <input id="login-password" type="password" class="input-box" :placeholder="$t('Login.Password')"/>
         </div>
         <div class="login-forget">{{$t('Login.Forget')}}.?</div>
-        <router-link to="/Home" replace>
-          <button class="login-row login-button" @click="login">{{$t('Login.Login')}}</button>
-        </router-link>
+        <button class="login-row login-button" @click="login">{{$t('Login.Login')}}</button>
       </div>
     </div>
     <div class="bg2"></div>
@@ -30,7 +28,7 @@
 
 <script>
 import { Tabbar, TabbarItem } from 'vant'
-import { axios } from '@/global'
+// import { axios } from '@/global'
 export default {
   components: {
     [Tabbar.name]: Tabbar,
@@ -44,11 +42,19 @@ export default {
   },
   methods: {
     login () {
-      this.$store.commit('GettokenID', '0001')
-      axios.get('/api/Login.json')
+      // axios.post('/api/Login.json', {username: '888', pwd: '123'})
+      //   .then((res) => {
+      //     console.log(res)
+      //     let data = res.data.data
+      //     console.log(data)
+      //     this.$store.commit('GettokenID', '0001')
+      //   })
+      this.$http.get('/api/Login.json')
         .then((res) => {
-          let data = res.data.data
-          this.list = data
+          let data = res.data
+          this.$store.commit('GettokenID', data.tokenId)
+          window.localStorage.setItem('tokenID', data.tokenId)
+          this.$router.replace({ path: '/Home' })
         })
     }
   }

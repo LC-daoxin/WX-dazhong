@@ -21,7 +21,6 @@
 <script>
 import { List, Cell } from 'vant'
 import ListItem from '@/components/list/ListItem'
-import axios from 'axios'
 export default {
   name: 'ListContent',
   props: {
@@ -141,9 +140,9 @@ export default {
       }, 1000)
     },
     getListInfo () {
-      axios.get('/api/List.json')
+      this.$http.get('/api/List.json')
         .then((res) => {
-          let data = res.data.data
+          let data = res.data
           this.list = data
         })
     }

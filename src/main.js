@@ -12,6 +12,8 @@ import { Table, TableColumn } from 'element-ui' // 按需引入element-ui
 import '@styles/reset.css'
 import '@styles/border.css'
 import '@styles/iconfont.css'
+import { axios } from '@/global'
+Vue.prototype.$http = axios
 
 Vue.config.productionTip = false
 

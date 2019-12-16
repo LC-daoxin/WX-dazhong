@@ -1,4 +1,6 @@
 {
   "ret": true,
-  "data": ["OK"]
+  "data": {
+    "tokenId": "EUIU2131USX"
+  }
 }

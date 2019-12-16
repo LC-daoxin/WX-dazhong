@@ -125,8 +125,8 @@ export default {
     }
   },
   mounted () {
-    if (localStorage.getItem('First') == null) {
-      localStorage.setItem('First', 'Landed') // 如果第一次登录模拟添加搜索历史
+    if (window.localStorage.getItem('First') == null) {
+      window.localStorage.setItem('First', 'Landed') // 如果第一次登录模拟添加搜索历史
       this.saveSearch(this.InitialHistory)
       this.HistoryList = this.InitialHistory
     } else {
@@ -157,7 +157,7 @@ export default {
     },
     cleanHistory () {
       this.HistoryList = []
-      localStorage.removeItem('SearchWord')
+      window.localStorage.removeItem('SearchWord')
     },
     handleHistory (Event) { // 点击历史搜索显示到输入框里
       let Text = Event.currentTarget.getElementsByTagName('span')[0].innerText
@@ -170,7 +170,7 @@ export default {
     },
     recordHistory () {
       if (this.search !== '') { // 先判断输入的是不是空格
-        if (localStorage.getItem('SearchWord') == null) {
+        if (this.getSearch() == null) {
           this.saveSearch(this.search)
           this.HistoryList = this.getSearch()
         } else {
@@ -186,10 +186,10 @@ export default {
       }
     },
     saveSearch (Arr) { // 保存搜索历史记录
-      localStorage.setItem('SearchWord', Arr)
+      window.localStorage.setItem('SearchWord', Arr)
     },
     getSearch () { // 获取localStorage中搜索历史记录 并转换为数组
-      let SearchWord = localStorage.getItem('SearchWord')
+      let SearchWord = window.localStorage.getItem('SearchWord')
       return SearchWord ? SearchWord.split(',') : []
     }
   }
